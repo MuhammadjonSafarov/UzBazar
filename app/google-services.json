@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1038316628163",
+    "project_id": "myauth-8f789",
+    "storage_bucket": "myauth-8f789.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1038316628163:android:9e05083cefad969c639a76",
+        "android_client_info": {
+          "package_name": "uz.xia.dars3_4"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1038316628163-cubppeu5qk1nh0dlmq29hi2g4as18tf4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkutiP_4h8aoDTOwjepTSCqpdBqoy9jtk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1038316628163-cubppeu5qk1nh0dlmq29hi2g4as18tf4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

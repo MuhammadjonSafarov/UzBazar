@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Dars3_4</string>
+    <string name="invalidet_login">Email xato kiritilgan</string>
+    <string name="invalidet_password">6 ta belgidan kam kiritildi</string>
+</resources>
