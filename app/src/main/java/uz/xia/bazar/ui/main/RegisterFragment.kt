@@ -1,13 +1,10 @@
 package uz.xia.bazar.ui.main
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.google.firebase.auth.FirebaseAuth
 import com.jakewharton.rxbinding3.view.clicks
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
@@ -19,6 +16,7 @@ import uz.xia.bazar.utils.hideKeyboard
 import uz.xia.bazar.utils.throttleFirstShort
 
 private const val TAG = "RegisterFragment"
+
 class RegisterFragment : Fragment() {
 
     private var _binding: FragmentRegisterBinding? = null
@@ -44,6 +42,7 @@ class RegisterFragment : Fragment() {
         ) {
             Validation.isValidPassword(it)
         }
+
     companion object {
         fun newInstance() = RegisterFragment()
     }
@@ -61,8 +60,8 @@ class RegisterFragment : Fragment() {
             emailChanges,
             passwordChanges,
             passwordRetryChanges
-        ) { t1, t2,t3->
-            SignUpForm(t1, t2,t3)
+        ) { t1, t2, t3 ->
+            SignUpForm(t1, t2, t3)
         }.switchMap { form ->
             val isValid = form.isValid()
             binding.button.isEnabled = isValid
@@ -91,14 +90,14 @@ class RegisterFragment : Fragment() {
     }
 
     private fun signUpFire(form: SignUpForm) {
-        FirebaseAuth.getInstance().createUserWithEmailAndPassword(form.email,form.password)
-            .addOnCompleteListener { result->
-                if (result.isSuccessful) {
-                    Toast.makeText(requireContext(),"Muvofaqiyatli o'tdi",Toast.LENGTH_LONG).show()
-                }else{
-                    Log.d(TAG,"Error ${result.exception}")
-                }
-            }
+        /*    FirebaseAuth.getInstance().createUserWithEmailAndPassword(form.email,form.password)
+                .addOnCompleteListener { result->
+                    if (result.isSuccessful) {
+                        Toast.makeText(requireContext(),"Muvofaqiyatli o'tdi",Toast.LENGTH_LONG).show()
+                    }else{
+                        Log.d(TAG,"Error ${result.exception}")
+                    }
+                }*/
     }
 
     override fun onDestroyView() {

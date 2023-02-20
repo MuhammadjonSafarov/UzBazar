@@ -1,19 +1,19 @@
-package uz.xia.bazar.ui.main
+package uz.xia.bazar.ui.auth
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.google.firebase.auth.FirebaseAuth
+import com.bumptech.glide.Glide
 import com.jakewharton.rxbinding3.view.clicks
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import uz.xia.bazar.R
 import uz.xia.bazar.databinding.FragmentLoginBinding
+import uz.xia.bazar.ui.main.SignInForm
 import uz.xia.bazar.utils.Validation
 import uz.xia.bazar.utils.errorCheckingTextChanges
 import uz.xia.bazar.utils.hideKeyboard
@@ -68,6 +68,10 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        Glide.with(requireContext())
+            .load("http://192.168.1.128:8082/api/preview/Aldxlx")
+            .into(binding.image)
         binding.textView.setOnClickListener {
         }
 
@@ -104,16 +108,15 @@ class LoginFragment : Fragment() {
     }
 
 
-
     private fun signIn(form: SignInForm?) {
-        FirebaseAuth.getInstance().signInWithEmailAndPassword(form!!.email, form.password)
-            .addOnCompleteListener {
-                if (it.isSuccessful) {
-                    mListener?.onClickLogin()
-                } else {
-                    Log.d(TAG, "singIn Error ${it.exception}")
-                }
-            }
+        /*    FirebaseAuth.getInstance().signInWithEmailAndPassword(form!!.email, form.password)
+                .addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        mListener?.onClickLogin()
+                    } else {
+                        Log.d(TAG, "singIn Error ${it.exception}")
+                    }
+                }*/
     }
 
     override fun onDestroyView() {

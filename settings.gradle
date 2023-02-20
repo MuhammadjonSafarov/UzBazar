@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "Dars3_4"
+rootProject.name = "UzBazar"
 include ':app'
