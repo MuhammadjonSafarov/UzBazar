@@ -68,9 +68,8 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         Glide.with(requireContext())
-            .load("http://192.168.1.128:8082/api/preview/Aldxlx")
+            .load("http://127.0.0.1:8082/api/preview/Aldxlx")
             .into(binding.image)
         binding.textView.setOnClickListener {
         }

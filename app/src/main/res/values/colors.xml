@@ -5,7 +5,19 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
+
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="statusBarColor">#00B043</color>
+
+    <color name="colorTextHint">#80FFFFFF</color>
+    <color name="colorTextBlack">#202124</color>
+    <color name="colorStatusBar">#00B043</color>
+    <color name="colorPrimaryDark">#00B043</color>
+    <color name="colorPrimary">#6B41EB</color>
+    <color name="colorAccept">#00C24A</color>
+
+    <color name="colorBackground">#F4F6F7</color>
+    <color name="colorButtonBazaar">#00C24A</color>
+    <color name="colorButtonBazaarRipple">#4200C24A</color>
+    <color name="background">#dddddd</color>
 </resources>

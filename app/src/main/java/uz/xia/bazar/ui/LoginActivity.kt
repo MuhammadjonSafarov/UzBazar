@@ -23,7 +23,9 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun addFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction().replace(R.id.container, fragment).commitNow()
-        //  createNotification()
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.container, fragment)
+            .commitNow()
     }
 }
