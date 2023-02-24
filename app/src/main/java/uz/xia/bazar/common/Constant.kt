@@ -12,7 +12,7 @@ val marketBannerList = listOf(
     R.drawable.banner3,
     R.drawable.banner3
 )
-const val BASE_URL="http://192.168.0.101:8082/api/"
+const val BASE_URL="http://192.168.1.128:8082/api/"
 
 sealed class Status{
     object SUCCESS:Status()

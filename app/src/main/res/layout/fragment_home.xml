@@ -16,13 +16,13 @@
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/bannerPager1"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_marginTop="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                />
+                app:layout_collapseMode="pin" />
             <!-- <androidx.viewpager.widget.ViewPager
                  android:id="@+id/bannerPager2"
                  android:layout_marginTop="?attr/actionBarSize"
@@ -53,7 +53,8 @@
                     <View
                         android:layout_width="0.5dp"
                         android:layout_height="match_parent"
-                        android:background="@color/white" />
+                        android:background="@color/white"
+                        />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
@@ -62,7 +63,8 @@
                         android:gravity="center_vertical"
                         android:text="Дом"
                         android:textColor="@color/white"
-                        android:textSize="14dp" />
+                        android:textSize="14dp"
+                        />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
@@ -72,7 +74,8 @@
                         android:gravity="center_vertical"
                         android:text="ул.А.Темура дом-34, кв.-69"
                         android:textColor="@color/colorTextHint"
-                        android:textSize="14dp" />
+                        android:textSize="14dp"
+                        />
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/btn"
@@ -82,7 +85,8 @@
                         android:layout_marginEnd="8dp"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:padding="4dp"
-                        app:srcCompat="@drawable/icon_arrow_down_filled" />
+                        app:srcCompat="@drawable/icon_arrow_down_filled"
+                        />
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </com.google.android.material.appbar.MaterialToolbar>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
