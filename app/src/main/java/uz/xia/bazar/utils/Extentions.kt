@@ -1,6 +1,7 @@
 package uz.xia.bazar.utils
 
 import android.content.Context
+import android.content.res.Resources
 import android.util.Patterns
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.StringRes
@@ -19,7 +20,8 @@ fun TextInputEditText.errorCheckingTextChanges(
 
     return textChanges().mapToString().doOnNext { input ->
         if (input.isNotEmpty()) {
-            textInputLayout.error = if (isValid(input)) null else textInputLayout.context.getString(errorMessageId)
+            textInputLayout.error =
+                if (isValid(input)) null else textInputLayout.context.getString(errorMessageId)
         }
     }
 }
@@ -38,7 +40,11 @@ fun <T> Observable<T>.throttleFirstShort() = this.throttleFirst(500L, TimeUnit.M
 
 object Validation {
     fun isValidEmail(email: String) = Patterns.EMAIL_ADDRESS.matcher(email).matches()
-        // val emailPattern="^\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*\$"
+    // val emailPattern="^\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*\$"
 
     fun isValidPassword(password: String) = password.length >= 6
 }
+
+fun <T> lazyFast(initializer: () -> T): Lazy<T> = lazy(LazyThreadSafetyMode.NONE, initializer)
+
+fun Int.toDp() :Int = (this / Resources.getSystem().displayMetrics.density).toInt()
