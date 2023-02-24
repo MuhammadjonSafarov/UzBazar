@@ -29,11 +29,27 @@ class HomeViewModel(app: Application) : AndroidViewModel(app), IHomeViewModel {
             try {
                 liveStatus.postValue(Status.LOADING)
                 delay(1_000L)
-                val res = apiService.getCategories()
+                liveStatus.postValue(Status.SUCCESS)
+                val categories= listOf(
+                    Category(1,"Новые продукты",""),
+                    Category(2,"Новые продукты",""),
+                    Category(3,"Новые продукты",""),
+                    Category(4,"Новые продукты",""),
+                    Category(5,"Новые продукты",""),
+                    Category(6,"Новые продукты",""),
+                    Category(7,"Новые продукты",""),
+                    Category(8,"Новые продукты",""),
+                    Category(9,"Новые продукты",""),
+                    Category(10,"Новые продукты",""),
+                    Category(11,"Новые продукты",""),
+                    Category(12,"Новые продукты",""),
+                )
+                liveData.postValue(categories)
+              /*  val res = apiService.getCategories()
                 if (res.isSuccessful) {
                     liveStatus.postValue(Status.SUCCESS)
                     liveData.postValue(res.body())
-                }
+                }*/
             } catch (e: Exception) {
                 liveStatus.postValue(Status.ERROR(e.toString()))
             }

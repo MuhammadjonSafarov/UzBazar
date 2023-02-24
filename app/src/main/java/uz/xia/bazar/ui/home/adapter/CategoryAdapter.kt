@@ -17,8 +17,8 @@ class CategoryAdapter : ListAdapter<Category, CategoryAdapter.CategoryVH>(ItemDi
         private val tvName = binding.tvTitle
         fun onBind(model: Category) {
             tvName.text = model.nameRu
-            Glide.with(ivImage.context).load("${BASE_URL}preview/${model.fileStorage.hashId}")
-                .into(ivImage)
+         /*   Glide.with(ivImage.context).load("${BASE_URL}preview/${model.fileStorage.hashId}")
+                .into(ivImage)*/
         }
     }
 

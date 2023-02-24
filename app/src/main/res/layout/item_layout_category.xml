@@ -10,14 +10,14 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivImage"
         android:layout_width="match_parent"
-        android:layout_height="74dp"
+        android:layout_height="78dp"
         app:srcCompat="@drawable/icon"
         android:elevation="1dp"
         />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="16dp"
         android:gravity="center"

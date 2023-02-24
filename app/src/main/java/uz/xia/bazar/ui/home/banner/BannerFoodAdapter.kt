@@ -8,6 +8,7 @@ import uz.xia.bazar.R
 class BannerFoodAdapter(fm: FragmentManager) :
     FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
     private val mList = listOf(
+        0,
         R.drawable.banner1,
         R.drawable.banner2,
         R.drawable.banner3
