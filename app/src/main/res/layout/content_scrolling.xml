@@ -46,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
-                android:background="@drawable/button_ripple_bazaar"
+                android:background="@drawable/button_ripple_bazaar_selected"
                 android:button="@null"
                 android:fontFamily="@font/roboto_boldly"
                 android:gravity="center"

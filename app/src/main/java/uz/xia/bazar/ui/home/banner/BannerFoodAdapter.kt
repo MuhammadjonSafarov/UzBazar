@@ -11,7 +11,7 @@ class BannerFoodAdapter(fm: FragmentManager) :
         0,
         R.drawable.banner1,
         R.drawable.banner2,
-        R.drawable.banner3
+        R.drawable.banner2
     )
     override fun getCount(): Int = mList.size
 
