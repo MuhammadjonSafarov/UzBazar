@@ -1,6 +1,8 @@
 package uz.xia.bazar.ui
 
+import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import uz.xia.bazar.R
@@ -13,7 +15,11 @@ class LoginActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             addFragment(SplashFragment.newInstance())
         }
-
+        Handler().postDelayed(Runnable {
+            Intent(this, MainActivity::class.java).apply {
+                startActivity(this)
+            }
+        }, 1_000L)
     }
 
     private fun addFragment(fragment: Fragment) {

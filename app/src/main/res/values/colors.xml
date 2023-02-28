@@ -11,8 +11,10 @@
 
     <color name="colorTextHint">#80FFFFFF</color>
     <color name="colorTextBlack">#202124</color>
+    <color name="colorTextViolet">#6B41EB</color>
     <color name="colorStatusBar">#00B043</color>
     <color name="colorPrimaryDark">#00B043</color>
+
     <color name="colorPrimary">#6B41EB</color>
     <color name="colorAccept">#00C24A</color>
 
