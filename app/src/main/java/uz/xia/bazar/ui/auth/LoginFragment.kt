@@ -72,7 +72,6 @@ class LoginFragment : Fragment() {
             .load("http://127.0.0.1:8082/api/preview/Aldxlx")
             .into(binding.image)
         binding.textView.setOnClickListener {
-
         }
 
         cd.add(Observable.combineLatest(
@@ -126,6 +125,7 @@ class LoginFragment : Fragment() {
             cd.dispose()
         }
     }
+
 }
 
 interface ILoginListener {
