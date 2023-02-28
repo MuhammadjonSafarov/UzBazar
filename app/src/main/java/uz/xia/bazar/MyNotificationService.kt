@@ -1,4 +1,3 @@
-/*
 package uz.xia.bazar
 
 import android.app.Notification
@@ -33,12 +32,10 @@ class MyNotificationService : FirebaseMessagingService() {
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.O) {
             val notificationChannel = NotificationChannel(
                 CHANNEL_ID, "notification_channel_id", NotificationManager.IMPORTANCE_HIGH)
-            */
-/* val audioAttributes = AudioAttributes.Builder()
+            /* val audioAttributes = AudioAttributes.Builder()
                  .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
                  .setUsage(AudioAttributes.USAGE_NOTIFICATION)
-                 .build()*//*
-
+                 .build()*/
             notificationChannel.enableLights(true)
             // notificationChannel.setSound(soundUri, audioAttributes)
             notificationChannel.lightColor = Color.GREEN
@@ -53,4 +50,4 @@ class MyNotificationService : FirebaseMessagingService() {
         Log.d(TAG,"token : $token")
         super.onNewToken(token)
     }
-}*/
+}

@@ -40,12 +40,7 @@ class MyService : IntentService("intent_service") {
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.O) {
             val notificationChannel = NotificationChannel(
                 CHANNEL_ID, "notification_channel_id", NotificationManager.IMPORTANCE_HIGH)
-            /* val audioAttributes = AudioAttributes.Builder()
-                 .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                 .setUsage(AudioAttributes.USAGE_NOTIFICATION)
-                 .build()*/
             notificationChannel.enableLights(true)
-            // notificationChannel.setSound(soundUri, audioAttributes)
             notificationChannel.lightColor = Color.GREEN
             notificationChannel.enableVibration(true)
             notification.setChannelId(CHANNEL_ID)
@@ -53,10 +48,4 @@ class MyService : IntentService("intent_service") {
         }
         notificationManager.notify(4, notification.build())
     }
-
-/*    override fun onCreate() {
-        super.onCreate()
-
-    }*/
-
 }
