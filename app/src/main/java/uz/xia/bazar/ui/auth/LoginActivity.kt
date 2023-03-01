@@ -1,11 +1,12 @@
-package uz.xia.bazar.ui
+package uz.xia.bazar.ui.auth
 
+import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import uz.xia.bazar.R
-import uz.xia.bazar.ui.auth.ILoginListener
-import uz.xia.bazar.ui.auth.LoginFragment
+import uz.xia.bazar.ui.auth.SmsFragment
 import uz.xia.bazar.ui.auth.SplashFragment
 
 class LoginActivity : AppCompatActivity(),ILoginListener {
@@ -17,6 +18,14 @@ class LoginActivity : AppCompatActivity(),ILoginListener {
         }
     }
 
+    override fun onToLogin() {
+        addFragment(LoginFragment.newInstance())
+    }
+
+    override fun onToSmsConform() {
+        addFragment(SmsFragment.newInstance())
+    }
+
     private fun addFragment(fragment: Fragment) {
         supportFragmentManager
             .beginTransaction()
@@ -24,12 +33,4 @@ class LoginActivity : AppCompatActivity(),ILoginListener {
             .commitNow()
     }
 
-    override fun onToLogin() {
-        addFragment(LoginFragment.newInstance())
-    }
-
-    override fun onClickLogin() {
-
-
-    }
 }

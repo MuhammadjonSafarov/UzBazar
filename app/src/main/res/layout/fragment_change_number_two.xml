@@ -65,6 +65,7 @@
             android:text="+998"
             android:textColor="@color/white"
             android:textSize="16dp"
+            android:drawablePadding="4dp"
             app:drawableStartCompat="@drawable/ic_phone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -105,13 +106,15 @@
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/text_noviyNomer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
-        android:text="НОВЫЙ НОМЕР"
+        android:text="@string/new_number"
         android:textColor="@color/white"
+        android:fontFamily="@font/roboto_mediumly"
+        app:fontFamily="@font/roboto_mediumly"
         android:textSize="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -121,7 +124,7 @@
         android:id="@+id/tv_CodeHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/SMS"
+        android:text="@string/conform_message"
         android:textColor="@color/white"
         android:textSize="12dp"
         android:layout_marginBottom="20dp"
@@ -133,7 +136,7 @@
         android:id="@+id/vash_nomer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/vash_nomer"
+        android:text="@string/your_number"
         android:layout_marginLeft="16dp"
         android:textColor="@color/white"
         android:textSize="12dp"

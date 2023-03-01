@@ -96,7 +96,8 @@
 
     <include
         android:id="@+id/content"
-        layout="@layout/content_scrolling" />
+        layout="@layout/content_scrolling"
+        />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

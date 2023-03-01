@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BazarUz</string>
+    <string name="invalidet_login">Email xato kiritilgan</string>
+    <string name="invalidet_password">6 ta belgidan kam kiritildi</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+
+
+
+    <string name="conform_message">SMS c кодом подтверждения придет на Ваш \nновый номер</string>
+    <string name="your_number">Введите ваш новый номер</string>
+    <string name="new_number">НОВЫЙ НОМЕР</string>
+    <string name="russian">Русский</string>
+    <string name="private_polity">Я принимаю Правила использования и пользовательское соглашение</string>
+    <string name="next">ПРОДОЛЖИТЬ</string>
+</resources>
