@@ -2,10 +2,13 @@ package uz.xia.bazar.ui.auth
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.redmadrobot.inputmask.MaskedTextChangedListener
+import com.redmadrobot.inputmask.helper.AffinityCalculationStrategy
 import io.reactivex.disposables.CompositeDisposable
 import uz.xia.bazar.R
 import uz.xia.bazar.databinding.FragmentLoginBinding
@@ -38,6 +41,18 @@ class LoginFragment : Fragment() {
         fun newInstance() = LoginFragment()
     }
 
+    private val maskedListener=object: MaskedTextChangedListener.ValueListener{
+        override fun onTextChanged(
+            maskFilled: Boolean,
+            extractedValue: String,
+            formattedValue: String
+        ) {
+            binding.button.isEnabled=maskFilled
+            Log.d(TAG,"extractedValue:$extractedValue  formattedValue:$formattedValue")
+        }
+
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -45,17 +60,20 @@ class LoginFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val affineFormats: MutableList<String> = ArrayList()
+        affineFormats.add("([00])[000]-[00]-[00]")
 
-
-    private fun signIn(form: SignInForm?) {
-        /*    FirebaseAuth.getInstance().signInWithEmailAndPassword(form!!.email, form.password)
-                .addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        mListener?.onClickLogin()
-                    } else {
-                        Log.d(TAG, "singIn Error ${it.exception}")
-                    }
-                }*/
+        val listener: MaskedTextChangedListener = MaskedTextChangedListener.installOn(
+            binding.phone,
+            "([00])[000]-[00]-[00]",
+            affineFormats, AffinityCalculationStrategy.PREFIX, maskedListener
+        )
+        binding.phone.hint = listener.placeholder()
+        binding.button.setOnClickListener {
+            mListener?.onToSmsConform()
+        }
     }
 
     override fun onDestroyView() {
@@ -68,5 +86,6 @@ class LoginFragment : Fragment() {
 }
 
 interface ILoginListener {
-    fun onClickLogin()
+    fun onToLogin()
+    fun onToSmsConform()
 }

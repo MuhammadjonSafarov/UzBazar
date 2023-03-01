@@ -103,4 +103,7 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="new_number">НОВЫЙ НОМЕР</string>
+    <string name="russian">Русский</string>
+    <string name="private_polity">Я принимаю Правила использования и пользовательское соглашение</string>
+    <string name="next">ПРОДОЛЖИТЬ</string>
 </resources>
