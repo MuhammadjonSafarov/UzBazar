@@ -6,6 +6,7 @@ import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import uz.xia.bazar.R
+import uz.xia.bazar.ui.auth.SmsFragment
 import uz.xia.bazar.ui.auth.SplashFragment
 
 class LoginActivity : AppCompatActivity() {
@@ -13,7 +14,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         if (savedInstanceState == null) {
-            addFragment(SplashFragment.newInstance())
+            addFragment(SmsFragment.newInstance())
         }
         Handler().postDelayed(Runnable {
             Intent(this, MainActivity::class.java).apply {
