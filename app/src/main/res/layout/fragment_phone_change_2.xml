@@ -6,15 +6,28 @@
     android:background="@drawable/login_bg_gradient"
     android:fitsSystemWindows="true">
 
+
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/image"
+        android:id="@+id/simcard_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/simcard_image" />
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/simcard2_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/ll_code"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/login_image" />
+        app:srcCompat="@drawable/simcard2_image" />
+
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button"
@@ -23,9 +36,9 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginBottom="24dp"
         android:background="@drawable/login_button_selector"
-        android:fontFamily="@font/roboto_boldly"
-        android:text="ПОЛУЧИТЬ КОД"
         android:enabled="false"
+        android:fontFamily="@font/roboto_boldly"
+        android:text="ПРОДОЛЖИТЬ"
         android:textColor="@color/colorTextViolet"
         android:textSize="16dp"
         android:textStyle="bold"
@@ -33,32 +46,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/ll_code"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_margin="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/tv_CodeHeader"
         app:layout_constraintStart_toStartOf="parent">
 
-        <TextView
-            android:id="@+id/tvCodeHeader"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ваш номер"
-            android:textColor="@color/white"
-            android:textSize="12dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvCode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="+998"
             android:layout_margin="6dp"
+            android:text="+998"
             android:textColor="@color/white"
             android:textSize="16dp"
             app:drawableStartCompat="@drawable/ic_phone"
@@ -71,34 +75,69 @@
             android:layout_height="1dp"
             android:background="@color/white" />
     </androidx.appcompat.widget.LinearLayoutCompat>
+
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="16dp"
+      android:layout_margin="16dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/tv_CodeHeader"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ll_code" >
+        app:layout_constraintStart_toEndOf="@+id/ll_code">
+
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/phone"
-            android:hint="99-000-00-00"
-            android:textColorHint="#CCCCCC"
-            android:textColor="@color/white"
             android:layout_width="match_parent"
-            android:textSize="16dp"
-            android:inputType="phone"
             android:layout_height="wrap_content"
-            android:background="@null"
             android:layout_marginBottom="8dp"
-            />
+            android:background="@null"
+            android:hint="99-000-00-00"
+            android:inputType="phone"
+            android:textColor="@color/white"
+            android:textColorHint="#CCCCCC"
+            android:textSize="16dp" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/white" />
+
+
     </androidx.appcompat.widget.LinearLayoutCompat>
 
+    <TextView
+        android:id="@+id/text_noviyNomer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="НОВЫЙ НОМЕР"
+        android:textColor="@color/white"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/tv_CodeHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/SMS"
+        android:textColor="@color/white"
+        android:textSize="12dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/vash_nomer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/vash_nomer"
+        android:layout_marginLeft="16dp"
+        android:textColor="@color/white"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/ll_code"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
