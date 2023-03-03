@@ -10,9 +10,8 @@ import androidx.fragment.app.Fragment
 import com.redmadrobot.inputmask.MaskedTextChangedListener
 import com.redmadrobot.inputmask.helper.AffinityCalculationStrategy
 import io.reactivex.disposables.CompositeDisposable
-import uz.xia.bazar.R
 import uz.xia.bazar.databinding.FragmentLoginBinding
-import uz.xia.bazar.ui.main.SignInForm
+
 
 private const val TAG = "LoginFragment"
 const val NOTIFICATION_CHANNEL_ID = "NOTIFICATION_CHANNEL_ID"
