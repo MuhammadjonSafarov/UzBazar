@@ -7,23 +7,33 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.redmadrobot.inputmask.MaskedTextChangedListener
 import com.redmadrobot.inputmask.helper.AffinityCalculationStrategy
 import io.reactivex.disposables.CompositeDisposable
-import uz.xia.bazar.R
+import uz.xia.bazar.common.MASK_PHONE_NUMBER
+import uz.xia.bazar.common.Status
 import uz.xia.bazar.databinding.FragmentLoginBinding
-import uz.xia.bazar.ui.main.SignInForm
+import uz.xia.bazar.ui.auth.login.LoginViewModel
+import uz.xia.bazar.ui.dialog.ProgressDialog
+import uz.xia.bazar.utils.lazyFast
 
 private const val TAG = "LoginFragment"
 const val NOTIFICATION_CHANNEL_ID = "NOTIFICATION_CHANNEL_ID"
 const val CHANNEL_ID = "CHANNEL_ID"
 
-class LoginFragment : Fragment() {
+class LoginFragment : Fragment(), View.OnClickListener {
 
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
     private val cd = CompositeDisposable()
     private var mListener: ILoginListener? = null
+    private var phoneNumber:String=""
+    companion object {
+        fun newInstance() = LoginFragment()
+    }
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is ILoginListener) {
@@ -36,19 +46,31 @@ class LoginFragment : Fragment() {
         mListener = null
     }
 
+    private val mViewModel by viewModels<LoginViewModel>()
+    private val progressBar by lazyFast { ProgressDialog() }
 
-    companion object {
-        fun newInstance() = LoginFragment()
+    private val stateObserver = Observer<Status> {
+        when (it) {
+            Status.LOADING -> progressBar.show(childFragmentManager,"progress_dialog")
+            Status.SUCCESS -> {
+                progressBar.dismiss()
+                mListener?.onToSmsConform(phoneNumber)
+            }
+            is Status.ERROR -> {
+                progressBar.dismiss()
+            }
+        }
     }
 
-    private val maskedListener=object: MaskedTextChangedListener.ValueListener{
+
+    private val maskedListener = object : MaskedTextChangedListener.ValueListener {
         override fun onTextChanged(
             maskFilled: Boolean,
             extractedValue: String,
             formattedValue: String
         ) {
-            binding.button.isEnabled=maskFilled
-            Log.d(TAG,"extractedValue:$extractedValue  formattedValue:$formattedValue")
+            binding.button.isEnabled = maskFilled
+            phoneNumber=extractedValue
         }
 
     }
@@ -62,18 +84,24 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val affineFormats: MutableList<String> = ArrayList()
-        affineFormats.add("([00])[000]-[00]-[00]")
+        setUpViews()
+        setUpObserver()
+    }
 
+    private fun setUpObserver() {
+        mViewModel.liveStatus.observe(viewLifecycleOwner, stateObserver)
+    }
+
+    private fun setUpViews() {
+        val affineFormats = mutableListOf<String>()
+        affineFormats.add(MASK_PHONE_NUMBER)
         val listener: MaskedTextChangedListener = MaskedTextChangedListener.installOn(
-            binding.phone,
-            "([00])[000]-[00]-[00]",
-            affineFormats, AffinityCalculationStrategy.PREFIX, maskedListener
+            binding.phoneNumber,
+            MASK_PHONE_NUMBER, affineFormats,
+            AffinityCalculationStrategy.PREFIX, maskedListener
         )
-        binding.phone.hint = listener.placeholder()
-        binding.button.setOnClickListener {
-            mListener?.onToSmsConform()
-        }
+        binding.phoneNumber.hint = listener.placeholder()
+        binding.button.setOnClickListener(this)
     }
 
     override fun onDestroyView() {
@@ -83,9 +111,14 @@ class LoginFragment : Fragment() {
             cd.dispose()
         }
     }
+
+    override fun onClick(view: View?) {
+        val phoneNumber = binding.phoneNumber.text.toString()
+        mViewModel.onLogin(phoneNumber)
+    }
 }
 
 interface ILoginListener {
     fun onToLogin()
-    fun onToSmsConform()
+    fun onToSmsConform(phone:String)
 }

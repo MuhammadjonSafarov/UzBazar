@@ -49,9 +49,10 @@ class SplashFragment : Fragment(), Runnable {
     }
 
     override fun run() {
-        Intent(requireContext(),MainActivity::class.java).apply {
+        mListener?.onToLogin()
+       /* Intent(requireContext(),MainActivity::class.java).apply {
             startActivity(this)
-        }
+        }*/
     }
 
     override fun onDestroyView() {

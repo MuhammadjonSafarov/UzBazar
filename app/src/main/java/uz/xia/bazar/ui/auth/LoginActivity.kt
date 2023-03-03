@@ -22,7 +22,7 @@ class LoginActivity : AppCompatActivity(),ILoginListener {
         addFragment(LoginFragment.newInstance())
     }
 
-    override fun onToSmsConform() {
+    override fun onToSmsConform(phoneNumber:String) {
         addFragment(SmsFragment.newInstance())
     }
 

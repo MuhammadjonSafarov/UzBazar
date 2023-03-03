@@ -83,7 +83,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/ll_code" >
         <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/phone"
+            android:id="@+id/phoneNumber"
             android:hint="99-000-00-00"
             android:textColorHint="#CCCCCC"
             android:textColor="@color/white"
