@@ -6,11 +6,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.Fragment
 import com.redmadrobot.inputmask.MaskedTextChangedListener
 import com.redmadrobot.inputmask.helper.AffinityCalculationStrategy
-import uz.xia.bazar.databinding.FragmentLoginBinding
 import uz.xia.bazar.databinding.FragmentSmsBinding
 
 private const val TAG = "SmsFragment"
