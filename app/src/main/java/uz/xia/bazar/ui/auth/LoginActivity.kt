@@ -1,15 +1,13 @@
 package uz.xia.bazar.ui.auth
 
-import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import uz.xia.bazar.R
-import uz.xia.bazar.ui.auth.SmsFragment
-import uz.xia.bazar.ui.auth.SplashFragment
+import uz.xia.bazar.ui.auth.login.ILoginListener
+import uz.xia.bazar.ui.auth.login.LoginFragment
 
-class LoginActivity : AppCompatActivity(),ILoginListener {
+class LoginActivity : AppCompatActivity(), ILoginListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)

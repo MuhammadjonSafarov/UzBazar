@@ -12,8 +12,8 @@ import android.os.IBinder
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import uz.xia.bazar.R
-import uz.xia.bazar.ui.auth.CHANNEL_ID
-import uz.xia.bazar.ui.auth.NOTIFICATION_CHANNEL_ID
+import uz.xia.bazar.ui.auth.login.CHANNEL_ID
+import uz.xia.bazar.ui.auth.login.NOTIFICATION_CHANNEL_ID
 
 class MyService : IntentService("intent_service") {
     override fun onBind(p0: Intent?): IBinder? {

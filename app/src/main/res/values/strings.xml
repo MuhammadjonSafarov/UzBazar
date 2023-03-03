@@ -105,16 +105,13 @@
     <string name="russian">Русский</string>
     <string name="private_polity">Я принимаю Правила использования и пользовательское соглашение</string>
     <string name="next">ПРОДОЛЖИТЬ</string>
-    <string name="number_change_message" translatable="false">               Вы можете сменить номер телефона.
+    <string name="number_change_message" >               Вы можете сменить номер телефона.
                     Ваш аккаунт и все данные будут
                        перенесены на новый номер</string>
-    <string name="change_number" translatable="false">+998 99 765-41-23</string>
-    <string name="error_server_text">ВНУТРЕННЯЯ ОШИБКА
-               СЕРВЕРА</string>
+    <string name="change_number">+998 99 765-41-23</string>
+    <string name="error_server_text">ВНУТРЕННЯЯ ОШИБКА \nСЕРВЕРА</string>
 
-    <string name="internet_error">Подключитесь к интернет сети
-        и попробуйте еще раз.</string>
+    <string name="internet_error">Подключитесь к интернет сети \nи попробуйте еще раз.</string>
 
-    <string name="no_internet_text">НЕТ ИНТЕРНЕТ
- СОЕДИНЕНИЯ</string>
+    <string name="no_internet_text">НЕТ ИНТЕРНЕТ \nСОЕДИНЕНИЯ</string>
 </resources>

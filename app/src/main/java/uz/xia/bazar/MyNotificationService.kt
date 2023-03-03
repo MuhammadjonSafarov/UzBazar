@@ -10,8 +10,8 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import uz.xia.bazar.ui.auth.CHANNEL_ID
-import uz.xia.bazar.ui.auth.NOTIFICATION_CHANNEL_ID
+import uz.xia.bazar.ui.auth.login.CHANNEL_ID
+import uz.xia.bazar.ui.auth.login.NOTIFICATION_CHANNEL_ID
 
 private const val TAG = "MyNotificationService"
 

@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import com.redmadrobot.inputmask.MaskedTextChangedListener
 import com.redmadrobot.inputmask.helper.AffinityCalculationStrategy
 import uz.xia.bazar.databinding.FragmentSmsBinding
+import uz.xia.bazar.ui.auth.login.ILoginListener
 
 private const val TAG = "SmsFragment"
 class SmsFragment :Fragment(){

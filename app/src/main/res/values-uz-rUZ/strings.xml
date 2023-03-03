@@ -21,4 +21,7 @@
         и попробуйте еще раз.</string>
     <string name="no_internet_text">НЕТ ИНТЕРНЕТ
 СОЕДИНЕНИЯ</string>
+    <string name="number_change_message">               Вы можете сменить номер телефона.
+                    Ваш аккаунт и все данные будут
+                       перенесены на новый номер</string>
 </resources>

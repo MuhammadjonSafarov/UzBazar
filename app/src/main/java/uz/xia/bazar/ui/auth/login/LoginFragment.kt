@@ -1,8 +1,6 @@
-package uz.xia.bazar.ui.auth
-
+package uz.xia.bazar.ui.auth.login
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +13,6 @@ import io.reactivex.disposables.CompositeDisposable
 import uz.xia.bazar.common.MASK_PHONE_NUMBER
 import uz.xia.bazar.common.Status
 import uz.xia.bazar.databinding.FragmentLoginBinding
-import uz.xia.bazar.ui.auth.login.LoginViewModel
 import uz.xia.bazar.ui.dialog.ProgressDialog
 import uz.xia.bazar.utils.lazyFast
 

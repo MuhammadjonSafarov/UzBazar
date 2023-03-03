@@ -1,7 +1,6 @@
 package uz.xia.bazar.ui.auth
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -10,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import uz.xia.bazar.databinding.FragmentSplashBinding
-import uz.xia.bazar.ui.MainActivity
+import uz.xia.bazar.ui.auth.login.ILoginListener
 
 
 class SplashFragment : Fragment(), Runnable {
