@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import uz.xia.bazar.R
 import uz.xia.bazar.ui.auth.login.ILoginListener
 import uz.xia.bazar.ui.auth.login.LoginFragment
+import uz.xia.bazar.ui.auth.sms.SmsFragment
 
 class LoginActivity : AppCompatActivity(), ILoginListener {
     override fun onCreate(savedInstanceState: Bundle?) {
