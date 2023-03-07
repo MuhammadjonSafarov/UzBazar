@@ -28,7 +28,7 @@
             android:layout_marginEnd="20dp"
             android:fontFamily="@font/roboto_mediumly"
             android:text="Имя Фамилия"
-            app:drawableEndCompat="@drawable/user"
+            app:drawableEndCompat="@drawable/icon_filled_pen"
             android:textColor="@color/black"
             android:textSize="16dp"
             android:textStyle="bold" />
