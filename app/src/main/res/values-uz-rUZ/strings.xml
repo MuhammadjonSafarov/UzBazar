@@ -21,4 +21,8 @@
     <string name="change_number_text">СМЕНИТЬ НОМЕР</string>
     <string name="internet_error">Подключитесь к интернет сети \nи попробуйте еще раз.</string>
     <string name="no_internet_text">НЕТ ИНТЕРНЕТ \nСОЕДИНЕНИЯ</string>
+    <string name="main">Главная</string>
+    <string name="search">Поиск</string>
+    <string name="profile">Профиль</string>
+    <string name="favorite">Любимое</string>
 </resources>
