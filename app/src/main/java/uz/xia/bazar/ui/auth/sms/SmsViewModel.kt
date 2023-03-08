@@ -17,7 +17,7 @@ class SmsViewModel:ViewModel(),ILoginViewModel {
     private val apiService = NetworkManager.getInstaince()
 
     override val liveStatus = MutableLiveData<Status>()
-    override fun onLogin(phoneNumber: String) {
+  override fun onLogin(phoneNumber: String,SmsCode:String) {
         viewModelScope.launch {
             try {
                 liveStatus.postValue(Status.LOADING)
