@@ -111,7 +111,8 @@ class LoginFragment : Fragment(), View.OnClickListener {
 
     override fun onClick(view: View?) {
         val phoneNumber = binding.phoneNumber.text.toString()
-        mViewModel.onLogin(phoneNumber)
+       // mViewModel.onLogin(phoneNumber)
+        mListener?.onToSmsConform(phoneNumber)
     }
 }
 

@@ -3,6 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/action_menu"
         android:title="Home"
-        android:icon="@drawable/icon_arrow_down_filled"
+        android:icon="@drawable/icon_filled_arrow_down"
         app:showAsAction="always"/>
 </menu>
