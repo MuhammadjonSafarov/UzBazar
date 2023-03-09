@@ -25,4 +25,6 @@
     <string name="search">Поиск</string>
     <string name="profile">Профиль</string>
     <string name="favorite">Любимое</string>
+    <string name="home">Дом</string>
+    <string name="work">Работа</string>
 </resources>

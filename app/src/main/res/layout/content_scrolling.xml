@@ -60,23 +60,23 @@
         </RadioGroup>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/restaurant_rv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_layout_restaurant"
-            />
-
-        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/categories_rv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="4"
             tools:itemCount="12"
             tools:listitem="@layout/item_layout_category" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/restaurant_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_layout_restaurant"
+            />
 
         <com.facebook.shimmer.ShimmerFrameLayout
             android:id="@+id/shimmer_view_container"
@@ -84,9 +84,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
+            android:visibility="gone"
             android:background="@color/white"
             android:orientation="vertical"
-            android:visibility="gone"
             shimmer:duration="800">
             <!-- Adding 7 rows of placeholders -->
             <LinearLayout
@@ -141,5 +141,27 @@
             </LinearLayout>
 
         </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvRestaurant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Рестораны"
+            android:textColor="@color/colorTextGray"
+            android:textSize="16dp"
+            android:visibility="gone"
+            android:layout_marginTop="22dp"
+            android:layout_marginStart="16dp"
+            />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/restaurant_rv_vertical"
+            android:layout_marginTop="16dp"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_layout_restaurant"
+            android:visibility="gone"
+            />
     </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.core.widget.NestedScrollView>

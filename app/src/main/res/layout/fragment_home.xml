@@ -23,14 +23,14 @@
                 android:layout_height="200dp"
                 android:layout_marginTop="?attr/actionBarSize"
                 app:layout_collapseMode="pin" />
-            <!-- <androidx.viewpager.widget.ViewPager
+             <androidx.viewpager.widget.ViewPager
                  android:id="@+id/bannerPager2"
                  android:layout_marginTop="?attr/actionBarSize"
                  android:layout_height="200dp"
                  android:layout_width="match_parent"
                  app:layout_collapseMode="pin"
                  android:visibility="gone"
-                 />-->
+                 />
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
@@ -57,11 +57,12 @@
                         />
 
                     <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvAddress"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginStart="12dp"
                         android:gravity="center_vertical"
-                        android:text="Дом"
+                        android:text="@string/home"
                         android:textColor="@color/white"
                         android:textSize="14dp"
                         />
