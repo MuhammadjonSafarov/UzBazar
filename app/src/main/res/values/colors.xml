@@ -25,4 +25,6 @@
     <color name="background">#dddddd</color>
     <color name="colorButton">#6B3BED</color>
     <color name="colorLineGray">#dddddd</color>
+    <color name="colorLineGrayAddresses">#E6E6E6</color>
+
 </resources>

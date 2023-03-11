@@ -2,45 +2,190 @@
 <androidx.appcompat.widget.LinearLayoutCompat
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     android:orientation="vertical">
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccept">
+        <TextView
+            android:layout_height="26dp"
+            android:layout_width="86dp"
+            android:text="@string/profile"
+            android:fontFamily="@font/roboto_regulary"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            />
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginTop="26dp">
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/ic_user_placeholder" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/profile_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="@font/roboto_mediumly"
+                android:text="@string/profile_name"
+                app:drawableEndCompat="@drawable/icon_filled_pen"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="end"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@color/colorLineGray" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/profile_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/roboto_regulary"
+            android:text="@string/profile_phone_number"
+            app:drawableEndCompat="@drawable/icon_filled_pen"
+            android:textColor="@color/black"
+            android:drawablePadding="8dp"
+            app:drawableStartCompat="@drawable/ic_phone_purple"
+            android:textSize="16dp" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="16dp">
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/ic_user_placeholder" />
-
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:layout_marginTop="32dp">
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/profile_location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:fontFamily="@font/roboto_mediumly"
-            android:text="Имя Фамилия"
-            app:drawableEndCompat="@drawable/icon_filled_pen"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:fontFamily="@font/roboto_regulary"
+            app:drawableStartCompat="@drawable/ic_location"
+            android:drawablePadding="4dp"
+            android:text="@string/profile_location"
+            app:drawableEndCompat="@drawable/icon_filled_arrow_down_profile"
             android:textColor="@color/black"
-            android:textSize="16dp"
-            android:textStyle="bold" />
+            android:textSize="16dp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="end"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@color/colorLineGray" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/profile_history"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:fontFamily="@font/roboto_regulary"
+            app:drawableStartCompat="@drawable/ic_phone_history"
+            android:drawablePadding="4dp"
+            android:text="@string/profile_history"
+            app:drawableEndCompat="@drawable/icon_filled_arrow_down_profile"
+            android:textColor="@color/black"
+            android:textSize="16dp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="end"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@color/colorLineGray" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/profile_language"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="20dp"
+            android:paddingBottom="16dp"
+            android:paddingTop="16dp"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/roboto_regulary"
+            app:drawableStartCompat="@drawable/ic_phone_language"
+            android:drawablePadding="4dp"
+            android:text="@string/profile_language"
+            app:drawableEndCompat="@drawable/icon_filled_arrow_down_profile"
+            android:textColor="@color/black"
+            android:textSize="16dp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="end"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@color/colorLineGray" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/profile_help"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:fontFamily="@font/roboto_regulary"
+            app:drawableStartCompat="@drawable/ic_phone_help"
+            android:drawablePadding="4dp"
+            android:text="@string/profile_help"
+            app:drawableEndCompat="@drawable/icon_filled_arrow_down_profile"
+            android:textColor="@color/black"
+            android:textSize="16dp" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/logotip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="120dp"
+            android:layout_marginEnd="120dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="50dp"
+            app:drawableRightCompat="@drawable/ic_logotip_simplex"
+            android:text="Разработано"
+           />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_gravity="end"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@color/colorLineGray" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>
