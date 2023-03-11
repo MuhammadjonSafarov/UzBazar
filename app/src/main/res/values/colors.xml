@@ -23,5 +23,6 @@
     <color name="colorButtonBazaar">#00C24A</color>
     <color name="colorButtonBazaarRipple">#4200C24A</color>
     <color name="background">#dddddd</color>
+    <color name="colorButton">#6B3BED</color>
     <color name="colorLineGray">#dddddd</color>
 </resources>

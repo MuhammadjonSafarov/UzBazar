@@ -6,16 +6,18 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import uz.xia.bazar.common.Status
+import uz.xia.bazar.data.LoginRequest
 import uz.xia.bazar.data.SmsConform
 import uz.xia.bazar.network.NetworkManager
+import uz.xia.bazar.ui.auth.login.ILoginViewModel
 
 private const val TAG = "SmsViewModel"
 class SmsViewModel:ViewModel(),ILoginViewModel {
     private val apiService = NetworkManager.getInstaince()
+
     override val liveStatus = MutableLiveData<Status>()
-    override fun onLogin(phoneNumber: String,SmsCode:String) {
+  override fun onLogin(phoneNumber: String,SmsCode:String) {
         viewModelScope.launch {
             try {
                 liveStatus.postValue(Status.LOADING)
