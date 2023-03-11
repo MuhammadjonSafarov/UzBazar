@@ -4,5 +4,5 @@ data class Category(
     val id: Int,
     val nameRu: String,
     val nameUz: String,
-    val fileStorage: FileStorage=FileStorage("")
+    val fileStorage: FileStorage
 )

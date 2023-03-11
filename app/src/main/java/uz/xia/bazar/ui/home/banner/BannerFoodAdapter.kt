@@ -16,6 +16,11 @@ class BannerFoodAdapter(fm: FragmentManager) :
     override fun getCount(): Int = mList.size
 
     override fun getItem(position: Int): Fragment{
-        return BannerFragment.getInstaince(mList[position])
+        if(position==0){
+            return HomeLocationFragment.getInstaince()
+        }else{
+            return BannerFragment.getInstaince(mList[position])
+        }
+
     }
 }

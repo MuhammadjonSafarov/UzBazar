@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="12dp"
+    android:background="@color/white"
+    >
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivImage"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:scaleType="centerCrop"
+        android:elevation="1dp"
+        app:srcCompat="@drawable/banner1"
+       />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvDiscount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="11dp"
+        android:gravity="center"
+        android:elevation="1dp"
+        android:paddingEnd="10dp"
+        android:paddingStart="8dp"
+        android:paddingVertical="4dp"
+        android:drawablePadding="4dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        app:drawableStartCompat="@drawable/ic_discount"
+        android:background="@drawable/shape_discount"
+        android:textColor="@color/white"
+        tools:text="25% скидка" />
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/btn_favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="24dp"
+        android:elevation="1dp"
+        app:srcCompat="@drawable/icon_outline_favorite"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvFoodName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ivImage"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/roboto_boldly"
+        android:textColor="@color/colorTextBlack"
+        android:textSize="18dp"
+        app:fontFamily="@font/roboto_boldly"
+        tools:text="Узбекский плов" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ivImage"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="16dp"
+        android:textColor="@color/colorTextGray"
+        android:textSize="12dp"
+        tools:text="Ресторан" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvService"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvFoodName"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:textColor="@color/colorTextGray"
+        android:textSize="14dp"
+        tools:text="Ресторан" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvServicetime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvService"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="16dp"
+        android:textColor="@color/colorTextGray"
+        android:textSize="14dp"
+        tools:text="Ресторан"
+        android:layout_marginBottom="16dp"/>
+
+</RelativeLayout>
