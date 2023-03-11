@@ -56,7 +56,6 @@ class HomeFragment : Fragment(), Runnable, CompoundButton.OnCheckedChangeListene
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setUpViews()
         setUpObservable()
         Log.d(TAG, "onViewCreated")
@@ -66,7 +65,7 @@ class HomeFragment : Fragment(), Runnable, CompoundButton.OnCheckedChangeListene
 
     private fun setUpViews() {
         binding.bannerPager1.adapter = marketPagerAdapter
-        binding.bannerPager2.adapter = marketPagerAdapter
+        binding.bannerPager2.adapter = foodPagerAdapter
         handler.postDelayed(this, 6_000L)
 
         /*categories*/

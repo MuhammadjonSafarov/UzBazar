@@ -24,10 +24,11 @@ class SplashFragment : Fragment(), Runnable {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is ILoginListener){
-            mListener=context
+        if (context is ILoginListener) {
+            mListener = context
         }
     }
+
     companion object {
         fun newInstance() = SplashFragment()
     }
@@ -41,12 +42,12 @@ class SplashFragment : Fragment(), Runnable {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        handler.postDelayed(this,1_500L)
+        handler.postDelayed(this, 1_500L)
     }
 
     override fun onDetach() {
         super.onDetach()
-        mListener=null
+        mListener = null
     }
 
     override fun run() {
@@ -59,6 +60,6 @@ class SplashFragment : Fragment(), Runnable {
     override fun onDestroyView() {
         super.onDestroyView()
         handler.removeCallbacks(this)
-        _binding=null
+        _binding = null
     }
 }
