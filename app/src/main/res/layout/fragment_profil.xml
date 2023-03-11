@@ -9,10 +9,17 @@
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorAccept"
-        app:titleTextColor="@color/white"
-        app:title="@string/profile_name_toolbar"
-        />
+        android:background="@color/colorAccept">
+        <TextView
+            android:layout_height="26dp"
+            android:layout_width="86dp"
+            android:text="@string/profile"
+            android:fontFamily="@font/roboto_regulary"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            />
+    </androidx.appcompat.widget.Toolbar>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"

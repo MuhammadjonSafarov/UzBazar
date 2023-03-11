@@ -121,4 +121,11 @@
     <string name="profile_language">Русский язык</string>
     <string name="profile_help">Помощь</string>
     <string name="profile_name_toolbar">Профиль</string>
+    <string name="my_adresses">Мои адреса</string>
+    <string name="home_adresses">Дом</string>
+    <string name="add_adresses">Добавить адрес</string>
+    <string name="add_adresses_home">Добавить адрес дома</string>
+    <string name="add_dresses_job">Добавить адрес работы</string>
+    <string name="add_adresses_other">Добавить другие адреса</string>
+    <string name="addresses_text">ул.А.Темура дом-34, кв.-69</string>
 </resources>

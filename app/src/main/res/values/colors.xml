@@ -24,4 +24,6 @@
     <color name="colorButtonBazaarRipple">#4200C24A</color>
     <color name="background">#dddddd</color>
     <color name="colorLineGray">#dddddd</color>
+    <color name="colorLineGrayAddresses">#E6E6E6</color>
+
 </resources>
