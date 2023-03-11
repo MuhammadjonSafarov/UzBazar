@@ -18,11 +18,10 @@ class GeoLocationFragment : Fragment() {
     lateinit var mapView: MapView
     private val permissionCode = 101
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+/*    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         MapKitFactory.setApiKey("43790952-2b06-4f86-b031-5039a3fd1ea7")
         MapKitFactory.initialize(this)
-        setContentView(R.layout.activity_main)
 
         mapView=findViewById(R.id.mapview)
         mapView.map.move(
@@ -38,7 +37,7 @@ class GeoLocationFragment : Fragment() {
             ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), permissionCode)
             return
         }
-    }
+    }*/
 
     override fun onStop() {
         mapView.onStop()

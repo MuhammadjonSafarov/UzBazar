@@ -1,4 +1,4 @@
-package uz.xia.bazar.ui.home.banner
+package uz.xia.bazar.ui.profile.addresses.add
 
 import android.graphics.PointF
 import android.os.Bundle
@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import com.yandex.mapkit.Animation
 import com.yandex.mapkit.MapKitFactory
 import com.yandex.mapkit.geometry.Point
@@ -16,30 +17,40 @@ import com.yandex.mapkit.logo.VerticalAlignment
 import com.yandex.mapkit.map.CameraPosition
 import com.yandex.mapkit.map.IconStyle
 import com.yandex.mapkit.map.RotationType
+import com.yandex.mapkit.mapview.MapView
 import com.yandex.mapkit.user_location.UserLocationLayer
 import com.yandex.mapkit.user_location.UserLocationObjectListener
 import com.yandex.mapkit.user_location.UserLocationView
 import com.yandex.runtime.image.ImageProvider
 import uz.xia.bazar.R
-import uz.xia.bazar.databinding.FragmentMapHomeViewBinding
+import uz.xia.bazar.databinding.FragmentAddAddressMapBinding
 import uz.xia.bazar.utils.getBitmapFromVector
 import uz.xia.bazar.utils.lazyFast
 
+class AddLocationMapFragment:Fragment(), UserLocationObjectListener {
 
-class HomeLocationFragment : Fragment(), UserLocationObjectListener {
-    private var _binding: FragmentMapHomeViewBinding? = null
-    private val binding get() = _binding!!
+    lateinit var mapView: MapView
     private var userLocationLayer: UserLocationLayer? = null
 
     private val markIcon by lazyFast {
         ImageProvider.fromBitmap(requireContext().getBitmapFromVector(R.drawable.home_marker))
     }
     private val animation = Animation(Animation.Type.SMOOTH, 2.5f)
+    private var _binding: FragmentAddAddressMapBinding? = null
+    private val binding get() = _binding!!
+    private val navController by lazyFast {
+        Navigation.findNavController(
+            requireActivity(),
+            R.id.nav_host_fragment_main
+        )
+    }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentMapHomeViewBinding.inflate(inflater, container, false)
+        _binding = FragmentAddAddressMapBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -51,11 +62,12 @@ class HomeLocationFragment : Fragment(), UserLocationObjectListener {
 
 
     private fun setUpMap() {
-        userLocationLayer = MapKitFactory.getInstance().createUserLocationLayer(binding.mapview.mapWindow)
+        userLocationLayer =
+            MapKitFactory.getInstance().createUserLocationLayer(binding.mapview.mapWindow)
         userLocationLayer?.apply {
             isVisible = true
             isHeadingEnabled = true
-            setObjectListener(this@HomeLocationFragment)
+            setObjectListener(this@AddLocationMapFragment)
         }
         binding.mapview.map?.apply {
             logo.setAlignment(
@@ -96,17 +108,6 @@ class HomeLocationFragment : Fragment(), UserLocationObjectListener {
         binding.mapview.onStop()
         MapKitFactory.getInstance().onStop()
         super.onStop()
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
-    companion object {
-        fun getInstaince(): HomeLocationFragment {
-            return HomeLocationFragment()
-        }
     }
 
     override fun onObjectAdded(p0: UserLocationView) {
