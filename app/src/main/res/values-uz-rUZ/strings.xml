@@ -25,4 +25,18 @@
     <string name="search">Поиск</string>
     <string name="profile">Профиль</string>
     <string name="favorite">Любимое</string>
+    <string name="about_us_text">Давно выяснено, что при оценке дизайна и \nкомпозиции читаемый текст мешает \nсосредоточиться. Lorem Ipsum используют \nпотому, что тот обеспечивает более или \nменее стандартное заполнение шаблона, а \nтакже реальное распределение букв и \nпробелов в абзацах, которое не получается \nпри простой дубликации "Здесь ваш текст.. \nЗдесь ваш текст.." </string>
+    <string name="add_address">Добавить адрес</string>
+    <string name="search_address">Поиск адреса</string>
+    <string name="view_from_the_map">Указать на карте</string>
+    <string name="Bazaar.uz">Bazaar.uz</string>
+    <string name="about_us">О нас</string>
+    <string name="contact">Контакты</string>
+    <string name="help">Помощь</string>
+    <string name="terms_of_use">Правила использования</string>
+    <string name="privacy_policy">Политика конфиденциальности</string>
+    <string name="FAQ">Часто задаваемые вопросы</string>
+    <string name="language">Язык</string>
+    <string name="uzbek">O\'zbekcha</string>
+
 </resources>
