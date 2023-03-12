@@ -114,6 +114,8 @@
     <string name="search">Поиск</string>
     <string name="profile">Профиль</string>
     <string name="favorite">Любимое</string>
+    <string name="home">Дом</string>
+    <string name="work">Работа</string>
     <string name="profile_name">Имя Фамилия</string>
     <string name="profile_phone_number">+998 99 765–41–23</string>
     <string name="profile_location">Мои адреса</string>

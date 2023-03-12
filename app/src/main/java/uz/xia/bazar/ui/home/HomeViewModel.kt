@@ -14,32 +14,41 @@ import uz.xia.bazar.network.NetworkManager
 interface IHomeViewModel {
     fun loadCategories()
     fun loadRestaurants()
-    val liveData: LiveData<List<Category>>
+    fun loadVerticalRestaurants()
+    val liveCatData: LiveData<List<Category>>
+    val liveCatStatus: LiveData<Status>
+
     val liveRestaurantData: LiveData<List<Restaurant>>
-    val liveStatus: LiveData<Status>
     val liveRestaurantStatus: LiveData<Status>
+
+    val liveRestaurantVData: LiveData<List<Restaurant>>
+    val liveRestaurantVStatus: LiveData<Status>
 }
 
 class HomeViewModel : ViewModel(), IHomeViewModel {
-    override val liveData = MutableLiveData<List<Category>>()
+
+    override val liveCatData = MutableLiveData<List<Category>>()
+    override val liveCatStatus = MutableLiveData<Status>()
+
     override val liveRestaurantData = MutableLiveData<List<Restaurant>>()
     override val liveRestaurantStatus = MutableLiveData<Status>()
 
-    override val liveStatus = MutableLiveData<Status>()
+    override val liveRestaurantVData = MutableLiveData<List<Restaurant>>()
+    override val liveRestaurantVStatus = MutableLiveData<Status>()
     private val apiService = NetworkManager.getInstaince()
 
     override fun loadCategories() {
         viewModelScope.launch {
             try {
-                liveStatus.postValue(Status.LOADING)
+                liveCatStatus.postValue(Status.LOADING)
                 delay(1_000L)
                 val res = apiService.getCategories()
                 if (res.isSuccessful) {
-                    liveStatus.postValue(Status.SUCCESS)
-                    liveData.postValue(res.body())
+                    liveCatData.postValue(res.body())
+                    liveCatStatus.postValue(Status.SUCCESS)
                 }
             } catch (e: Exception) {
-                liveStatus.postValue(Status.ERROR(e.toString()))
+                liveCatStatus.postValue(Status.ERROR(e.toString()))
             }
         }
     }
@@ -49,7 +58,6 @@ class HomeViewModel : ViewModel(), IHomeViewModel {
             try {
                 liveRestaurantStatus.postValue(Status.LOADING)
                 delay(1_000L)
-                liveStatus.postValue(Status.SUCCESS)
                 val res = apiService.getRestaurants()
                 if (res.isSuccessful) {
                     liveRestaurantStatus.postValue(Status.SUCCESS)
@@ -61,5 +69,19 @@ class HomeViewModel : ViewModel(), IHomeViewModel {
         }
     }
 
-
+    override fun loadVerticalRestaurants() {
+        viewModelScope.launch {
+            try {
+                liveRestaurantVStatus.postValue(Status.LOADING)
+                delay(1_000L)
+                val res = apiService.getRestaurants()
+                if (res.isSuccessful) {
+                    liveRestaurantVStatus.postValue(Status.SUCCESS)
+                    liveRestaurantVData.postValue(res.body())
+                }
+            } catch (e: Exception) {
+                liveRestaurantVStatus.postValue(Status.ERROR(e.toString()))
+            }
+        }
+    }
 }
