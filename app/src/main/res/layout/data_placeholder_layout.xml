@@ -14,7 +14,6 @@
         android:layout_marginRight="@dimen/activityPadding"
         android:background="@color/background" />
 
-
     <View
         android:layout_width="74dp"
         android:layout_marginTop="@dimen/padding_10"

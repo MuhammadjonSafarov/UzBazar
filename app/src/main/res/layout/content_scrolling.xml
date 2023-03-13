@@ -14,57 +14,69 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:layout_marginVertical="16dp"
             android:orientation="horizontal">
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/appCompatButton1"
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/buttonBazaar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
                 android:background="@drawable/button_ripple_bazaar_selected"
+                android:button="@null"
+                android:checked="true"
                 android:fontFamily="@font/roboto_boldly"
+                android:gravity="center"
                 android:text="bazaar"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
+                android:textColor="@color/button_text_color"
                 android:textSize="16dp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/appCompatButton2"
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/buttonFood"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
-                android:background="@drawable/button_ripple_bazaar"
+                android:background="@drawable/button_ripple_bazaar_selected"
+                android:button="@null"
                 android:fontFamily="@font/roboto_boldly"
+                android:gravity="center"
                 android:text="bazaarfood"
-                android:textAllCaps="false"
-                android:textColor="@color/colorButtonBazaar"
+                android:textColor="@color/button_text_color"
                 android:textSize="16dp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-        </androidx.appcompat.widget.LinearLayoutCompat>
+        </RadioGroup>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/categories_rv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="4"
             tools:itemCount="12"
             tools:listitem="@layout/item_layout_category" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/restaurant_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_layout_restaurant"
+            />
 
         <com.facebook.shimmer.ShimmerFrameLayout
             android:id="@+id/shimmer_view_container"
@@ -72,9 +84,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
+            android:visibility="gone"
+            android:background="@color/white"
             android:orientation="vertical"
             shimmer:duration="800">
-
             <!-- Adding 7 rows of placeholders -->
             <LinearLayout
                 android:layout_width="match_parent"
@@ -84,7 +97,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                   android:gravity="center_horizontal"
+                    android:gravity="center_horizontal"
                     android:orientation="horizontal">
 
                     <include layout="@layout/data_placeholder_layout" />
@@ -128,5 +141,27 @@
             </LinearLayout>
 
         </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvRestaurant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Рестораны"
+            android:textColor="@color/colorTextGray"
+            android:textSize="16dp"
+            android:visibility="gone"
+            android:layout_marginTop="22dp"
+            android:layout_marginStart="16dp"
+            />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/restaurant_rv_vertical"
+            android:layout_marginTop="16dp"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_layout_restaurant"
+            android:visibility="gone"
+            />
     </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.core.widget.NestedScrollView>

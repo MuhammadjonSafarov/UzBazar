@@ -8,13 +8,19 @@ import uz.xia.bazar.R
 class BannerFoodAdapter(fm: FragmentManager) :
     FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
     private val mList = listOf(
+        0,
         R.drawable.banner1,
         R.drawable.banner2,
-        R.drawable.banner3
+        R.drawable.banner2
     )
     override fun getCount(): Int = mList.size
 
     override fun getItem(position: Int): Fragment{
-        return BannerFragment.getInstaince(mList[position])
+        if(position==0){
+            return HomeLocationFragment.getInstaince()
+        }else{
+            return BannerFragment.getInstaince(mList[position])
+        }
+
     }
 }

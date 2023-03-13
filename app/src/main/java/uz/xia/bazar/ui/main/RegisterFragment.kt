@@ -70,23 +70,6 @@ class RegisterFragment : Fragment() {
             hideKeyboard()
             signUpFire(form)
         })
-
-        /* binding.etLogin.addTextChangedListener(object : TextWatcher {
-             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-             }
-
-             override fun onTextChanged(text: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                 if (text != null) {
-                     binding.button.isEnabled = Patterns.EMAIL_ADDRESS.matcher(text).matches()
-                 }
-             }
-
-             override fun afterTextChanged(p0: Editable?) {
-
-             }
-
-         })*/
     }
 
     private fun signUpFire(form: SignUpForm) {
@@ -107,5 +90,4 @@ class RegisterFragment : Fragment() {
             cd.dispose()
         }
     }
-
 }

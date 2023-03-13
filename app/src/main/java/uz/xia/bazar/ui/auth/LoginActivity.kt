@@ -1,25 +1,28 @@
-package uz.xia.bazar.ui
+package uz.xia.bazar.ui.auth
 
-import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import uz.xia.bazar.R
-import uz.xia.bazar.ui.auth.SplashFragment
+import uz.xia.bazar.ui.auth.login.ILoginListener
+import uz.xia.bazar.ui.auth.login.LoginFragment
+import uz.xia.bazar.ui.auth.sms.SmsFragment
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity(), ILoginListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         if (savedInstanceState == null) {
             addFragment(SplashFragment.newInstance())
         }
-        Handler().postDelayed(Runnable {
-            Intent(this, MainActivity::class.java).apply {
-                startActivity(this)
-            }
-        }, 1_000L)
+    }
+
+    override fun onToLogin() {
+        addFragment(LoginFragment.newInstance())
+    }
+
+    override fun onToSmsConform(phoneNumber:String) {
+        addFragment(SmsFragment.newInstance())
     }
 
     private fun addFragment(fragment: Fragment) {
@@ -28,4 +31,5 @@ class LoginActivity : AppCompatActivity() {
             .replace(R.id.container, fragment)
             .commitNow()
     }
+
 }

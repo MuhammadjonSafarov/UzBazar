@@ -1,12 +1,15 @@
 <resources>
     <string name="app_name">BazarUz</string>
+
     <string name="invalidet_login">Email xato kiritilgan</string>
     <string name="invalidet_password">6 ta belgidan kam kiritildi</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
-    <string name="large_text">
+    <string name="conform_message">SMS c кодом подтверждения придет на Ваш \nновый номер</string>
+    <string name="your_number">Введите ваш новый номер</string>
+  <!--  <string name="large_text" translatable="false">
         "Material is the metaphor.\n\n"
 
         "A material metaphor is the unifying theory of a rationalized space and a system of motion."
@@ -94,5 +97,52 @@
         "On the layout level, design your app layout to minimize opportunities for interference. "
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
-    </string>
+    </string>-->
+    <string name="server_btn">НА ГЛАВНУЮ</string>
+    <string name="server_text">ВНУТРЕННЯЯ ОШИБКА\nСЕРВЕРА</string>
+    <string name="new_number">НОВЫЙ НОМЕР</string>
+    <string name="russian">Русский</string>
+    <string name="private_polity">Я принимаю Правила использования и пользовательское соглашение</string>
+    <string name="next">ПРОДОЛЖИТЬ</string>
+    <string name="number_change_message">Вы можете сменить номер телефона.  \nВаш аккаунт и все данные будут \nперенесены на новый номер</string>
+    <string name="change_number">+998 99 765–41–23</string>
+    <string name="error_server_text">ВНУТРЕННЯЯ ОШИБКА \nСЕРВЕРА</string>
+    <string name="change_number_text">СМЕНИТЬ НОМЕР</string>
+    <string name="internet_error">Подключитесь к интернет сети \nи попробуйте еще раз.</string>
+    <string name="no_internet_text">НЕТ ИНТЕРНЕТ \nСОЕДИНЕНИЯ</string>
+    <string name="main">Главная</string>
+    <string name="search">Поиск</string>
+    <string name="profile">Профиль</string>
+    <string name="favorite">Любимое</string>
+    <string name="about_us_text">Давно выяснено, что при оценке дизайна и \nкомпозиции читаемый текст мешает \nсосредоточиться. Lorem Ipsum используют \nпотому, что тот обеспечивает более или \nменее стандартное заполнение шаблона, а \nтакже реальное распределение букв и \nпробелов в абзацах, которое не получается \nпри простой дубликации "Здесь ваш текст.. \nЗдесь ваш текст.." </string>
+    <string name="add_address">Добавить адрес</string>
+    <string name="search_address">Поиск адреса</string>
+    <string name="view_from_the_map">Указать на карте</string>
+    <string name="Bazaar.uz">Bazaar.uz</string>
+    <string name="about_us">О нас</string>
+    <string name="contact">Контакты</string>
+    <string name="help">Помощь</string>
+    <string name="terms_of_use">Правила использования</string>
+    <string name="privacy_policy">Политика конфиденциальности</string>
+    <string name="FAQ">Часто задаваемые вопросы</string>
+    <string name="language">Язык</string>
+    <string name="uzbek">O\'zbekcha</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home">Дом</string>
+    <string name="work">Работа</string>
+    <string name="profile_name">Имя Фамилия</string>
+    <string name="profile_phone_number">+998 99 765–41–23</string>
+    <string name="profile_location">Мои адреса</string>
+    <string name="profile_history">История покупок</string>
+    <string name="profile_language">Русский язык</string>
+    <string name="profile_help">Помощь</string>
+    <string name="profile_name_toolbar">Профиль</string>
+    <string name="my_addresses">Мои адреса</string>
+    <string name="home_adresses">Дом</string>
+    <string name="add_adresses">Добавить адрес</string>
+    <string name="add_adresses_home">Добавить адрес дома</string>
+    <string name="add_dresses_job">Добавить адрес работы</string>
+    <string name="add_adresses_other">Добавить другие адреса</string>
+    <string name="addresses_text">ул.А.Темура дом-34, кв.-69</string>
 </resources>

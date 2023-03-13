@@ -2,9 +2,12 @@ package uz.xia.bazar.utils
 
 import android.content.Context
 import android.content.res.Resources
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.util.Patterns
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.StringRes
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -31,6 +34,21 @@ fun Fragment.hideKeyboard() = activity?.run {
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(it.windowToken, 0)
     }
+}
+
+fun Context.getBitmapFromVector(drawableId: Int): Bitmap? {
+    val drawable = ContextCompat.getDrawable(this, drawableId) ?: return null
+
+    val bitmap = Bitmap.createBitmap(
+        drawable.intrinsicWidth,
+        drawable.intrinsicHeight,
+        Bitmap.Config.ARGB_8888
+    ) ?: return null
+    val canvas = Canvas(bitmap)
+    drawable.setBounds(0, 0, canvas.width, canvas.height)
+    drawable.draw(canvas)
+
+    return bitmap
 }
 
 fun Observable<CharSequence>.mapToString(): Observable<String> = this.map { it.toString() }

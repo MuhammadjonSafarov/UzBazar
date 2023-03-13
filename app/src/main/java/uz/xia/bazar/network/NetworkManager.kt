@@ -6,17 +6,18 @@ import com.chuckerteam.chucker.api.ChuckerInterceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import uz.xia.bazar.App
 import uz.xia.bazar.common.BASE_URL
 import java.util.concurrent.TimeUnit
 
 class NetworkManager {
     companion object {
         private var INSTAINCE: ApiService? = null
-        fun getInstaince(context: Context): ApiService {
+        fun getInstaince(): ApiService {
             if (INSTAINCE == null) {
-                val interceptor = ChuckerInterceptor.Builder(context)
-                    .collector(ChuckerCollector(context))
-                    .maxContentLength(250000L)
+                val interceptor = ChuckerInterceptor.Builder(App.context!!)
+                    .collector(ChuckerCollector(App.context!!))
+                    .maxContentLength(250_000L)
                     .redactHeaders(emptySet())
                     .alwaysReadResponseBody(false)
                     .build()
