@@ -1,16 +1,8 @@
 package uz.xia.bazar.geo
 
-import android.content.pm.PackageManager
-import android.os.Bundle
 import androidx.fragment.app.Fragment
-import androidx.core.app.ActivityCompat
-import com.yandex.mapkit.Animation
-import com.yandex.mapkit.MapKit
 import com.yandex.mapkit.MapKitFactory
-import com.yandex.mapkit.geometry.Point
-import com.yandex.mapkit.map.CameraPosition
 import com.yandex.mapkit.mapview.MapView
-import uz.xia.bazar.R
 
 
 class GeoLocationFragment : Fragment() {
