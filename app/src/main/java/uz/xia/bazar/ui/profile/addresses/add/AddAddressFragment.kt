@@ -33,6 +33,9 @@ class AddAddressFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.btnAddLocationMap.setOnClickListener(this)
+        binding.toolbar.setNavigationOnClickListener {
+            navController.popBackStack()
+        }
     }
 
     override fun onDestroyView() {

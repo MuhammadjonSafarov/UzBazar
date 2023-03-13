@@ -14,22 +14,6 @@
         android:layout_height="match_parent">
     </com.yandex.mapkit.mapview.MapView>
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:fitsSystemWindows="true"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayoutCompat2"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        tools:ignore="MissingConstraints" />
-
-    <com.google.android.material.appbar.CollapsingToolbarLayout
-        android:id="@+id/collapsingToolbarLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        app:layout_scrollFlags="scroll|exitUntilCollapsed" />
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
@@ -42,7 +26,7 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:contentInsetStartWithNavigation="0dp"
         app:layout_collapseMode="pin"
-        app:navigationIcon="@drawable/ic_back_filled"
+        app:navigationIcon="@drawable/back"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         tools:ignore="MissingConstraints">
 
@@ -64,7 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/collapsingToolbarLayout">
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button"
@@ -72,11 +56,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="12dp"
             android:layout_marginBottom="16dp"
             android:background="@color/colorButton"
-            android:enabled="false"
-            android:fontFamily="@font/roboto_boldly"
             android:text="ИСПОЛЬЗОВАТЬ ЭТОТ АДРЕС"
             android:textColor="@color/white"
             android:textSize="16dp"
@@ -101,12 +83,11 @@
             android:padding="16dp"
             android:imeOptions="actionSearch"
             android:inputType="text"
-            android:backgroundTint="@color/white"
             android:hint="Search"
             android:gravity="start"
             android:drawableStart="@drawable/ic_location_filled"
             android:drawablePadding="6dp"
-            android:background="@drawable/shape_screen_help_stroke"
+            android:background="@drawable/search_shadow_style"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
