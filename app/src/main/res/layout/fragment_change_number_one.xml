@@ -61,8 +61,8 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/tv_device"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="255dp"
+        android:layout_height="292dp"
         android:layout_marginStart="28dp"
         app:layout_constraintBottom_toBottomOf="@id/tv_CodeHeader"
         app:layout_constraintStart_toStartOf="parent"
