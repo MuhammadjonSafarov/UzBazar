@@ -56,6 +56,9 @@ class AddLocationMapFragment:Fragment(), UserLocationObjectListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.toolbar.setNavigationOnClickListener {
+            navController.popBackStack()
+        }
         setUpMap()
         moveInitCamera()
     }
