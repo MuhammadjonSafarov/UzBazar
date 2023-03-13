@@ -123,7 +123,7 @@
     <string name="profile_language">Русский язык</string>
     <string name="profile_help">Помощь</string>
     <string name="profile_name_toolbar">Профиль</string>
-    <string name="my_adresses">Мои адреса</string>
+    <string name="my_addresses">Мои адреса</string>
     <string name="home_adresses">Дом</string>
     <string name="add_adresses">Добавить адрес</string>
     <string name="add_adresses_home">Добавить адрес дома</string>

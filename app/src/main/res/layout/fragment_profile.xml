@@ -1,37 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
     android:orientation="vertical">
+
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorAccept">
-        <TextView
-            android:layout_height="26dp"
+
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="86dp"
-            android:text="@string/profile"
-            android:fontFamily="@font/roboto_regulary"
-            android:textSize="20dp"
-            android:textColor="@color/white"
+            android:layout_height="26dp"
             android:layout_gravity="center"
-            />
+            android:fontFamily="@font/roboto_regulary"
+            android:text="@string/profile"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:orientation="vertical"
         android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
         android:background="@color/white"
-        android:layout_marginTop="26dp">
+        android:orientation="vertical">
+
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="100dp"
@@ -49,18 +50,18 @@
                 android:layout_marginEnd="20dp"
                 android:fontFamily="@font/roboto_mediumly"
                 android:text="@string/profile_name"
-                app:drawableEndCompat="@drawable/icon_filled_pen"
                 android:textColor="@color/black"
                 android:textSize="16dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:drawableEndCompat="@drawable/icon_filled_pen" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_gravity="end"
-            android:layout_marginTop="16dp"
             android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="20dp"
             android:background="@color/colorLineGray" />
 
@@ -69,42 +70,45 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:fontFamily="@font/roboto_regulary"
-            android:text="@string/profile_phone_number"
-            app:drawableEndCompat="@drawable/icon_filled_pen"
-            android:textColor="@color/black"
             android:drawablePadding="8dp"
-            app:drawableStartCompat="@drawable/ic_phone_purple"
-            android:textSize="16dp" />
+            android:fontFamily="@font/roboto_regulary"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:text="@string/profile_phone_number"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            app:drawableEndCompat="@drawable/icon_filled_pen"
+            app:drawableStartCompat="@drawable/ic_phone_purple" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_marginTop="32dp"
         android:background="@color/white"
-        android:layout_marginTop="32dp">
+        android:orientation="vertical">
+
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/profile_location"
+            android:id="@+id/user_location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:drawablePadding="4dp"
+            android:fontFamily="@font/roboto_regulary"
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
-            android:fontFamily="@font/roboto_regulary"
-            app:drawableStartCompat="@drawable/ic_location"
-            android:drawablePadding="4dp"
             android:text="@string/profile_location"
-            app:drawableEndCompat="@drawable/icon_filled_arrow_down_profile"
+            android:background="@drawable/ripple_selector_item"
             android:textColor="@color/black"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            app:drawableEndCompat="@drawable/icon_filled_arrow_down_profile"
+            app:drawableStartCompat="@drawable/ic_location" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -112,6 +116,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:background="@color/colorLineGray" />
+
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/profile_history"
             android:layout_width="match_parent"
@@ -119,15 +124,16 @@
             android:layout_gravity="center_vertical"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
+            android:drawablePadding="4dp"
+            android:fontFamily="@font/roboto_regulary"
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
-            android:fontFamily="@font/roboto_regulary"
-            app:drawableStartCompat="@drawable/ic_phone_history"
-            android:drawablePadding="4dp"
             android:text="@string/profile_history"
-            app:drawableEndCompat="@drawable/icon_filled_arrow_down_profile"
             android:textColor="@color/black"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            app:drawableEndCompat="@drawable/icon_filled_arrow_down_profile"
+            app:drawableStartCompat="@drawable/ic_phone_history" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -135,22 +141,24 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:background="@color/colorLineGray" />
+
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/profile_language"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="20dp"
-            android:paddingBottom="16dp"
-            android:paddingTop="16dp"
             android:layout_marginEnd="20dp"
-            android:fontFamily="@font/roboto_regulary"
-            app:drawableStartCompat="@drawable/ic_phone_language"
             android:drawablePadding="4dp"
+            android:fontFamily="@font/roboto_regulary"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
             android:text="@string/profile_language"
-            app:drawableEndCompat="@drawable/icon_filled_arrow_down_profile"
             android:textColor="@color/black"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            app:drawableEndCompat="@drawable/icon_filled_arrow_down_profile"
+            app:drawableStartCompat="@drawable/ic_phone_language" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -158,6 +166,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:background="@color/colorLineGray" />
+
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/profile_help"
             android:layout_width="match_parent"
@@ -165,26 +174,26 @@
             android:layout_gravity="center_vertical"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
+            android:drawablePadding="4dp"
+            android:fontFamily="@font/roboto_regulary"
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
-            android:fontFamily="@font/roboto_regulary"
-            app:drawableStartCompat="@drawable/ic_phone_help"
-            android:drawablePadding="4dp"
             android:text="@string/profile_help"
-            app:drawableEndCompat="@drawable/icon_filled_arrow_down_profile"
             android:textColor="@color/black"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            app:drawableEndCompat="@drawable/icon_filled_arrow_down_profile"
+            app:drawableStartCompat="@drawable/ic_phone_help" />
+
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/logotip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="120dp"
-            android:layout_marginEnd="120dp"
             android:layout_gravity="center_vertical"
+            android:layout_marginStart="120dp"
             android:layout_marginTop="50dp"
-            app:drawableRightCompat="@drawable/ic_logotip_simplex"
+            android:layout_marginEnd="120dp"
             android:text="Разработано"
-           />
+            app:drawableRightCompat="@drawable/ic_logotip_simplex" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 

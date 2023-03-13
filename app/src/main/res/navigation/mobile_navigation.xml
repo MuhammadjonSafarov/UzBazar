@@ -18,8 +18,21 @@
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="uz.xia.bazar.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_profile"
+        android:name="uz.xia.bazar.ui.profile.ProfileFragment"
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/navigation_addresses"
+        android:name="uz.xia.bazar.ui.profile.addresses.AddressesFragment"
+        android:label="@string/my_addresses"
+        tools:layout="@layout/fragment_addresses" />
+
+    <fragment
+        android:id="@+id/nav_add_address_map"
+        android:name="uz.xia.bazar.ui.profile.addresses.add.AddLocationMapFragment"
+        android:label="@string/my_addresses"
+        tools:layout="@layout/fragment_add_address_map"
+        />
 </navigation>
