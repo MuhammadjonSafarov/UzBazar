@@ -34,6 +34,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="24dp"
+            android:background="@drawable/ripple_selector_item"
             android:layout_gravity="center">
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -100,6 +101,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="56dp"
+            android:background="@drawable/ripple_selector_item"
             android:layout_gravity="center">
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -145,13 +147,13 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_gravity="end"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:background="@color/colorLineGray" />
         <LinearLayout
-            android:paddingTop="1dp"
             android:layout_width="match_parent"
             android:layout_height="56dp"
+            android:background="@drawable/ripple_selector_item"
             android:layout_gravity="center">
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -196,12 +198,13 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_gravity="end"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:background="@color/colorLineGray" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="56dp"
+            android:background="@drawable/ripple_selector_item"
             android:layout_gravity="center">
 
             <androidx.appcompat.widget.AppCompatTextView

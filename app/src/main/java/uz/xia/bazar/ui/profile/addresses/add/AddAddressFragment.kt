@@ -8,11 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import uz.xia.bazar.R
 import uz.xia.bazar.databinding.FragmentAddAddressBinding
-import uz.xia.bazar.databinding.FragmentAddressesBinding
-import uz.xia.bazar.databinding.FragmentProfileBinding
 import uz.xia.bazar.utils.lazyFast
 
-class AddAddressFragment:Fragment(), View.OnClickListener {
+class AddAddressFragment : Fragment(), View.OnClickListener {
     private var _binding: FragmentAddAddressBinding? = null
     private val binding get() = _binding!!
     private val navController by lazyFast {

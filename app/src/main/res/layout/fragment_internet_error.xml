@@ -15,7 +15,7 @@
         android:background="@drawable/login_button_selector"
         android:enabled="false"
         android:fontFamily="@font/roboto_boldly"
-        android:text="ПЕРЕЗАГРУЗИТЬ"
+        android:text="@string/reload_text_error"
         android:textColor="@color/colorTextViolet"
         android:textSize="16dp"
         android:textStyle="bold"
@@ -23,15 +23,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/tv_internet_error"
-        android:layout_width="289dp"
-        android:layout_height="319dp"
-        android:layout_marginBottom="120dp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_internet_error" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/tv_internet_error2"
@@ -42,6 +33,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_device_two" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/tv_internet_error"
+        android:layout_width="289dp"
+        android:layout_height="319dp"
+        android:layout_marginBottom="120dp"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_internet_error" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/tv_wifi"
