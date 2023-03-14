@@ -42,7 +42,7 @@ class SplashFragment : Fragment(), Runnable {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        handler.postDelayed(this, 1_500L)
+        handler.postDelayed(this, 1_000L)
     }
 
     override fun onDetach() {
