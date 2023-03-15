@@ -1,14 +1,10 @@
 package uz.xia.bazar.ui.profile.addresses.add
 
-import android.annotation.SuppressLint
 import android.app.Application
-import android.location.Geocoder
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import timber.log.Timber
-import java.util.*
 
 interface IAddAddressViewModel {
     fun loadAddress(name: String)
