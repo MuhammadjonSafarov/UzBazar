@@ -10,7 +10,6 @@ import timber.log.Timber
 import uz.xia.bazar.common.Status
 import uz.xia.bazar.data.SmsConform
 import uz.xia.bazar.network.NetworkManager
-import uz.xia.bazar.ui.auth.login.ILoginViewModel
 interface ISmsViewModel {
     fun onLogin(phoneNumber: String, SmsCode: String)
     val liveStatus: LiveData<Status>

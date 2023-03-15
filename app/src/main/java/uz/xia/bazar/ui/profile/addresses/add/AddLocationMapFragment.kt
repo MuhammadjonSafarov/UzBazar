@@ -13,6 +13,7 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ListView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
@@ -56,6 +57,7 @@ private const val TAG = "AddLocationMapFragment"
 
 class AddLocationMapFragment : Fragment(), UserLocationObjectListener, View.OnClickListener,
     OnSuccessListener<LocationSettingsResponse>, OnFailureListener {
+     lateinit var listView:ListView
 
     private var hasEnableLocation = false
     private val settingsClient by lazyFast { LocationServices.getSettingsClient(requireContext()) }
