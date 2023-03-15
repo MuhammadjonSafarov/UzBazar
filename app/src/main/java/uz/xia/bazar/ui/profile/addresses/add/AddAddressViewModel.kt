@@ -17,16 +17,11 @@ interface IAddAddressViewModel {
 private const val TAG = "AddAddressViewModel"
 
 class AddAddressViewModel(app: Application) : AndroidViewModel(app), IAddAddressViewModel {
-    private val geocoder = Geocoder(app, Locale.getDefault())
 
     override fun loadAddress(name: String) {
         viewModelScope.launch {
             try {
-                delay(100)
-                val addresses = geocoder.getFromLocationName(name, 10)
-                addresses?.forEach { address->
-                    Timber.d("$TAG loadAddress $address")
-                }
+
             }catch (e:Exception) {
                 Timber.d("$TAG Exception ${e.message}")
             }
