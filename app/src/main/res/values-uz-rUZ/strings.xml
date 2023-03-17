@@ -58,4 +58,16 @@
     <string name="contact_text">Адрес: ул.А.Навои дом-65, офис-6 \nЭлектронная почта:</string>
     <string name="reload_text_error">ПЕРЕЗАГРУЗИТЬ</string>
     <string name="error_enable_gps_setting">GPS sozlamalariga ruxsat berilmagan !</string>
+
+    <!-- map-->
+    <string name="empty_list">Ҳеч нарса топилмади!</string>
+    <string name="distance">%.2f км</string>
+    <string name="distance_meter">%.2f м</string>
+    <string name="title_empty">Мавжуд эмас!</string>
+    <string name="accept_location">Жойлашувни тасдиқлаш</string>
+    <string name="search_city">Шаҳарни қидиринг…</string>
+    <string name="user_location">Жойлашув</string>
+    <string name="fail_post_id_not_found">Этот объект недоступен в системе!</string>
+    <string name="monitoring_add">Создать</string>
+
 </resources>

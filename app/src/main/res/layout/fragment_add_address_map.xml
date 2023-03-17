@@ -55,14 +55,15 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button"
+            android:id="@+id/button_conform_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="16dp"
-            android:background="@color/colorButton"
+            android:background="@drawable/ripple_button_add_address"
+            android:fontFamily="@font/roboto_boldly"
             android:text="ИСПОЛЬЗОВАТЬ ЭТОТ АДРЕС"
             android:textColor="@color/white"
             android:textSize="16dp"
@@ -72,15 +73,12 @@
             app:layout_constraintStart_toStartOf="parent" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:outlineAmbientShadowColor="@color/colorPrimary"
-        android:outlineSpotShadowColor="@color/colorPrimary"
-        app:cardCornerRadius="6dp"
-        app:cardElevation="4dp"
+        android:elevation="4dp"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
@@ -89,29 +87,42 @@
             android:id="@+id/et_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@null"
-            android:backgroundTint="@null"
+            android:background="@drawable/shape_bottom_recycle"
             android:drawableStart="@drawable/ic_location_filled"
             android:drawablePadding="6dp"
             android:gravity="start"
             android:hint="manzilni kiriting"
             android:imeOptions="actionSearch"
             android:inputType="text"
-            android:padding="16dp">
-        </androidx.appcompat.widget.AppCompatEditText>
-    </androidx.cardview.widget.CardView>
+            android:paddingVertical="16dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="16dp"></androidx.appcompat.widget.AppCompatEditText>
 
-    <ListView
-        android:id="@+id/list_view"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:visibility="invisible"
-        android:layout_marginStart="100dp"
-        android:layout_marginEnd="70dp"
-        android:layout_marginTop="50dp"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerAdjust"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-8dp"
+            android:background="@drawable/shape_bottom_recycle"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="4"
+            tools:listitem="@layout/item_nearby_city" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_loop="false"
+        app:lottie_rawRes="@raw/location_marker"
+        app:lottie_repeatMode="reverse" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/location"
@@ -119,8 +130,8 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="12dp"
         android:layout_marginBottom="12dp"
+        android:backgroundTint="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/linearLayoutCompat2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/icon_filled_map_location"
-        />
+        app:srcCompat="@drawable/icon_filled_map_location" />
 </androidx.constraintlayout.widget.ConstraintLayout>

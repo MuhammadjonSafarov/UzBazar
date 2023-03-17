@@ -8,9 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import uz.xia.bazar.R
 import uz.xia.bazar.databinding.FragmentAddAddressBinding
+import uz.xia.bazar.ui.profile.addresses.add.adapter.LocationAdapter
+import uz.xia.bazar.ui.profile.addresses.add.model.NearbyPlace
 import uz.xia.bazar.utils.lazyFast
 
-class AddAddressFragment : Fragment(), View.OnClickListener {
+class AddAddressFragment : Fragment(), View.OnClickListener, LocationAdapter.OnPlaceClickListener {
     private var _binding: FragmentAddAddressBinding? = null
     private val binding get() = _binding!!
     private val navController by lazyFast {
@@ -36,6 +38,7 @@ class AddAddressFragment : Fragment(), View.OnClickListener {
         binding.toolbar.setNavigationOnClickListener {
             navController.popBackStack()
         }
+
     }
 
     override fun onDestroyView() {
@@ -45,5 +48,9 @@ class AddAddressFragment : Fragment(), View.OnClickListener {
 
     override fun onClick(p0: View?) {
         navController.navigate(R.id.nav_add_address_map)
+    }
+
+    override fun onNearPlace(place: NearbyPlace) {
+
     }
 }

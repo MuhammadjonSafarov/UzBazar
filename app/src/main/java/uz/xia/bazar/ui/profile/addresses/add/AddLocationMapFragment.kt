@@ -3,6 +3,8 @@ package uz.xia.bazar.ui.profile.addresses.add
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.IntentSender
 import android.content.pm.PackageManager
@@ -13,10 +15,11 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ListView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.app.ActivityCompat
+import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -43,6 +46,8 @@ import com.yandex.runtime.image.ImageProvider
 import timber.log.Timber
 import uz.xia.bazar.R
 import uz.xia.bazar.databinding.FragmentAddAddressMapBinding
+import uz.xia.bazar.ui.profile.addresses.add.adapter.LocationAdapter
+import uz.xia.bazar.ui.profile.addresses.add.model.NearbyPlace
 import uz.xia.bazar.utils.getBitmapFromVector
 import uz.xia.bazar.utils.lazyFast
 import java.util.concurrent.Executors
@@ -56,10 +61,12 @@ const val REQUEST_CODE_UPDATE = 101
 private const val TAG = "AddLocationMapFragment"
 
 class AddLocationMapFragment : Fragment(), UserLocationObjectListener, View.OnClickListener,
-    OnSuccessListener<LocationSettingsResponse>, OnFailureListener {
-     lateinit var listView:ListView
+    OnSuccessListener<LocationSettingsResponse>, OnFailureListener,
+    LocationAdapter.OnPlaceClickListener {
 
     private var hasEnableLocation = false
+    private val viewModel: IAddAddressViewModel by viewModels<AddAddressViewModel>()
+    private val locationAdapter by lazyFast { LocationAdapter(this) }
     private val settingsClient by lazyFast { LocationServices.getSettingsClient(requireContext()) }
     private var requestingLocationUpdates: Boolean = false
     private var locationRequest: LocationRequest? = null
@@ -85,7 +92,6 @@ class AddLocationMapFragment : Fragment(), UserLocationObjectListener, View.OnCl
             requireActivity(), R.id.nav_host_fragment_main
         )
     }
-    private val viewModel by viewModels<AddAddressViewModel>()
     private val permissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
     ) { isGranted ->
@@ -124,19 +130,40 @@ class AddLocationMapFragment : Fragment(), UserLocationObjectListener, View.OnCl
         super.onViewCreated(view, savedInstanceState)
         setUpViews()
         setUpMap()
+        setUpObserver()
         //moveInitCamera()
     }
+
 
     private fun setUpViews() {
         binding.toolbar.setNavigationOnClickListener(this)
         binding.location.setOnClickListener(this)
+        binding.buttonConformAddress.setOnClickListener(this)
         binding.etAddress.addTextChangedListener {
-            if (it != null && it.length > 3){
-                viewModel.loadAddress(it.toString())
+            if (it != null && it.length > 3) {
+                viewModel.searchPlace(it.toString(), "uz")
+            } else if (it != null && it.isEmpty()) {
+                viewModel.loadNearbyPlaces()
             }
+        }
+        binding.recyclerAdjust.adapter = locationAdapter
+    }
+
+    private fun setUpObserver() {
+        viewModel.livePlaceList.observe(viewLifecycleOwner) {
+            if (!binding.recyclerAdjust.isVisible) {
+                binding.recyclerAdjust.visibility = View.VISIBLE
+            }
+            locationAdapter.submitList(it)
         }
     }
 
+
+    override fun onNearPlace(place: NearbyPlace) {
+        Timber.d("$TAG place $place")
+        binding.recyclerAdjust.visibility = View.GONE
+        moveInitCamera(Point(place.latitude, place.longitude))
+    }
 
     private fun setUpMap() {
         userLocationLayer =
@@ -168,18 +195,6 @@ class AddLocationMapFragment : Fragment(), UserLocationObjectListener, View.OnCl
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        MapKitFactory.getInstance().onStart()
-        binding.mapview.onStart()
-    }
-
-    override fun onStop() {
-        binding.mapview.onStop()
-        MapKitFactory.getInstance().onStop()
-        super.onStop()
-    }
-
     override fun onObjectAdded(p0: UserLocationView) {
 
 
@@ -209,8 +224,31 @@ class AddLocationMapFragment : Fragment(), UserLocationObjectListener, View.OnCl
                 }
             }
             R.id.toolbar -> navController.popBackStack()
+            R.id.button_conform_address -> {
+                conformAddressDialog()
+            }
             else -> {}
         }
+    }
+
+    @SuppressLint("CutPasteId")
+    private fun conformAddressDialog() {
+        val layout = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_add_address, null, false)
+        val etAddressName=layout.findViewById<AppCompatEditText>(R.id.etAddressName)
+        val etAddressStreet=layout.findViewById<AppCompatEditText>(R.id.etAddressName)
+        val dialog = AlertDialog.Builder(requireContext())
+            .setTitle("Manzilni kiritish")
+            .setView(layout)
+            .setPositiveButton("Ok", DialogInterface.OnClickListener { d, v ->
+                d.dismiss()
+                val addressName=etAddressName.text.toString()
+                val addressStreet=etAddressStreet.text.toString()
+                viewModel.saveAddress(addressName,addressStreet)
+            })
+            .setNegativeButton("Yopish", DialogInterface.OnClickListener { d, v ->
+                d.dismiss()
+            })
+        dialog.show()
     }
 
     private fun checkLocationPermission(): Boolean {
@@ -284,6 +322,18 @@ class AddLocationMapFragment : Fragment(), UserLocationObjectListener, View.OnCl
     private fun startLocationUpdates() {
         settingsClient.checkLocationSettings(locationSettingsRequest)
             .addOnSuccessListener(executor, this).addOnFailureListener(executor, this)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        MapKitFactory.getInstance().onStart()
+        binding.mapview.onStart()
+    }
+
+    override fun onStop() {
+        binding.mapview.onStop()
+        MapKitFactory.getInstance().onStop()
+        super.onStop()
     }
 
 }
