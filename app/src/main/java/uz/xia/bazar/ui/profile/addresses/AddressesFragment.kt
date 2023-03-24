@@ -38,9 +38,9 @@ class AddressesFragment : Fragment(), View.OnClickListener {
         binding.toolbar.setNavigationOnClickListener {
             navController.popBackStack()
         }
-      /*  viewModel.loadAddress().observe(viewLifecycleOwner){
+        viewModel.loadAddress().observe(viewLifecycleOwner){
             addressAdapter.submitList(it)
-        }*/
+        }
     }
 
     override fun onDestroyView() {

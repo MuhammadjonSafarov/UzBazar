@@ -112,7 +112,7 @@ class HomeFragment : Fragment(), Runnable, CompoundButton.OnCheckedChangeListene
                      binding.content.categoriesRv.visibility = View.VISIBLE*/
                 }
                 is Status.ERROR -> {
-                    Toast.makeText(requireContext(), it.text, Toast.LENGTH_LONG).show()
+                   // Toast.makeText(requireContext(), it.text, Toast.LENGTH_LONG).show()
                 } /*binding.content.shimmerViewContainer.visibility = View.GONE*/
             }
         }

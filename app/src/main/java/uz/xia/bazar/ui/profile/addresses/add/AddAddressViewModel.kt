@@ -11,8 +11,8 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import uz.xia.bazar.data.local.AppDatabase
-import uz.xia.bazar.data.local.entity.Address
 import uz.xia.bazar.data.local.entity.AddressType
+import uz.xia.bazar.data.local.entity.UserAddress
 import uz.xia.bazar.network.NominationService
 import uz.xia.bazar.ui.profile.addresses.add.model.NearEmpty
 import uz.xia.bazar.ui.profile.addresses.add.model.NearLoading
@@ -117,7 +117,7 @@ class AddAddressViewModel(app: Application) : AndroidViewModel(app), IAddAddress
     override fun saveAddress(addressName: String, addressStreet: String) {
         viewModelScope.launch {
             val time = Date().time
-            val address = Address(
+            val userAddress = UserAddress(
                 name = addressName,
                 street = addressStreet,
                 41.287235,
@@ -125,7 +125,7 @@ class AddAddressViewModel(app: Application) : AndroidViewModel(app), IAddAddress
                 time,
                 AddressType.HOME
             )
-            addressDao.insert(address)
+            addressDao.insertAddress(userAddress)
         }
     }
 
