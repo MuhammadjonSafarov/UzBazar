@@ -3,7 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
-    //id 'com.google.gms.google-services'
+   // id 'com.google.gms.google-services'
 }
 
 android {
@@ -40,22 +40,22 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
+    /*implementation 'androidx.core:core-ktx:1.7.0'*/
     implementation 'androidx.appcompat:appcompat:1.6.0'
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
-/*    implementation 'androidx.core:core:1.9.0'
-    implementation 'androidx.navigation:navigation-fragment:2.5.3'*/
+    implementation 'androidx.core:core-ktx:1.9.0'
+   /*  implementation 'androidx.navigation:navigation-fragment:2.5.3'*/
 
     implementation 'com.github.bumptech.glide:glide:4.14.2'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
 
     implementation "com.jakewharton.rxbinding3:rxbinding:3.1.0"
     implementation 'com.airbnb.android:lottie:3.0.3'
-    implementation 'com.google.firebase:firebase-auth:21.0.2'
-    implementation 'com.google.firebase:firebase-messaging-ktx:23.1.1'
+/*    implementation 'com.google.firebase:firebase-auth:21.0.2'
+    implementation 'com.google.firebase:firebase-messaging-ktx:23.1.1'*/
 
     // RoomDatabase
     implementation 'androidx.room:room-runtime:2.3.0'
@@ -70,9 +70,10 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
-
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
     implementation 'com.yandex.android:maps.mobile:4.1.0-lite'
     implementation 'com.redmadrobot:input-mask-android:6.1.0'
+    implementation "androidx.preference:preference-ktx:1.2.0"
 
     implementation 'com.google.code.gson:gson:2.8.9'
     //kapt "com.squareup.moshi:moshi-kotlin-codegen:1.8.0"

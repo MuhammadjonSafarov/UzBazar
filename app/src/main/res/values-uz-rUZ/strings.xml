@@ -69,5 +69,6 @@
     <string name="user_location">Жойлашув</string>
     <string name="fail_post_id_not_found">Этот объект недоступен в системе!</string>
     <string name="monitoring_add">Создать</string>
+    <string name="location_settings_not_allowed">Joylashuv sozlamalariga ruxsat berilmagan</string>
 
 </resources>
