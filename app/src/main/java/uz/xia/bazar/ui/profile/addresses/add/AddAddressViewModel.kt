@@ -1,18 +1,24 @@
 package uz.xia.bazar.ui.profile.addresses.add
 
 import android.app.Application
+import android.content.Context
+import android.content.SharedPreferences
 import android.location.Location
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.google.android.gms.common.util.SharedPreferencesUtils
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import uz.xia.bazar.data.local.AppDatabase
 import uz.xia.bazar.data.local.entity.AddressType
 import uz.xia.bazar.data.local.entity.UserAddress
+import uz.xia.bazar.data.pref.IPreferenceManager
+import uz.xia.bazar.data.pref.PreferenceManager
 import uz.xia.bazar.network.NominationService
 import uz.xia.bazar.ui.profile.addresses.add.model.NearEmpty
 import uz.xia.bazar.ui.profile.addresses.add.model.NearLoading
@@ -24,7 +30,9 @@ interface IAddAddressViewModel {
     val livePlaceList: LiveData<List<NearbyPlace>>
     fun searchPlace(query: String, lang: String)
     fun loadNearbyPlaces()
-    fun saveAddress(addressName: String, addressStreet: String)
+
+    fun geoCode(latitude: Double, longitude: Double, lang: String)
+    fun saveAddress(addressName: String)
 }
 
 private const val TAG = "AddAddressViewModel"
@@ -33,7 +41,10 @@ class AddAddressViewModel(app: Application) : AndroidViewModel(app), IAddAddress
     override val livePlaceList = MutableLiveData<List<NearbyPlace>>()
     private val nominationService = NominationService.getInstance()
     private val addressDao = AppDatabase.getInstance(app).addressDao()
-    private val placeToNearMapper = PlaceMapper(41.287235, 69.218949)
+    private val preference: IPreferenceManager =
+        PreferenceManager(androidx.preference.PreferenceManager.getDefaultSharedPreferences(app))
+    private var lastSearchJob: Job? = null
+    private val placeToNearMapper = PlaceMapper(preference.latitude, preference.longitude)
 
     override fun loadNearbyPlaces() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -70,8 +81,7 @@ class AddAddressViewModel(app: Application) : AndroidViewModel(app), IAddAddress
             try {
                 livePlaceList.postValue(listOf(NearLoading()))
                 delay(500)
-                val response =
-                    nominationService.searchPlaces("$query,uzbekistan", lang)
+                val response = nominationService.searchPlaces("$query,uzbekistan", lang)
                 if (response.isNotEmpty()) {
                     val listNearbyPlace = ArrayList<NearbyPlace>()
                     for (place in response) {
@@ -114,12 +124,53 @@ class AddAddressViewModel(app: Application) : AndroidViewModel(app), IAddAddress
         }
     }
 
-    override fun saveAddress(addressName: String, addressStreet: String) {
+    override fun geoCode(latitude: Double, longitude: Double, lang: String) {
+        lastSearchJob?.cancel()
+        lastSearchJob = viewModelScope.launch(Dispatchers.IO) {
+            try {
+                livePlaceList.postValue(listOf(NearLoading()))
+                val response = nominationService.loadAddress(latitude, longitude, lang)
+                var title = response?.displayName ?: throw Exception("Empty place name")
+                val lastIndexComma = title.lastIndexOf(',')
+                title =
+                    if (lastIndexComma == -1) title else title.substring(
+                        0,
+                        lastIndexComma
+                    )
+                title = title.replace(Regex(", \\d{6,}"), "")
+                preference.addressName = title
+                val distance = FloatArray(1)
+                Location.distanceBetween(
+                    preference.latitude,
+                    preference.longitude,
+                    latitude,
+                    longitude,
+                    distance
+                )
+                livePlaceList.postValue(
+                    listOf(
+                        NearbyPlace(
+                            Date().time,
+                            title,
+                            title,
+                            distance[0],
+                            latitude,
+                            longitude
+                        )
+                    )
+                )
+            } catch (e: Exception) {
+                Timber.d(e)
+                livePlaceList.postValue(listOf(NearEmpty()))
+            }
+        }
+    }
+
+    override fun saveAddress(addressName: String) {
         viewModelScope.launch {
             val time = Date().time
             val userAddress = UserAddress(
                 name = addressName,
-                street = addressStreet,
                 41.287235,
                 69.218949,
                 time,

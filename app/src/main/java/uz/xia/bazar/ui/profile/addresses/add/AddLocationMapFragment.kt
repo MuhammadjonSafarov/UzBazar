@@ -1,15 +1,19 @@
 package uz.xia.bazar.ui.profile.addresses.add
 
 import android.Manifest
+import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.IntentSender
 import android.content.pm.PackageManager
 import android.graphics.PointF
+import android.graphics.drawable.Animatable
 import android.location.Location
+import android.os.Build
 import android.os.Bundle
 import android.os.Looper
 import android.view.LayoutInflater
@@ -24,6 +28,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
+import com.airbnb.lottie.LottieDrawable
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.*
@@ -36,15 +41,16 @@ import com.yandex.mapkit.layers.ObjectEvent
 import com.yandex.mapkit.logo.Alignment
 import com.yandex.mapkit.logo.HorizontalAlignment
 import com.yandex.mapkit.logo.VerticalAlignment
-import com.yandex.mapkit.map.CameraPosition
-import com.yandex.mapkit.map.IconStyle
-import com.yandex.mapkit.map.RotationType
+import com.yandex.mapkit.map.*
+import com.yandex.mapkit.map.Map
 import com.yandex.mapkit.user_location.UserLocationLayer
 import com.yandex.mapkit.user_location.UserLocationObjectListener
 import com.yandex.mapkit.user_location.UserLocationView
 import com.yandex.runtime.image.ImageProvider
 import timber.log.Timber
 import uz.xia.bazar.R
+import uz.xia.bazar.data.pref.IPreferenceManager
+import uz.xia.bazar.data.pref.PreferenceManager
 import uz.xia.bazar.databinding.FragmentAddAddressMapBinding
 import uz.xia.bazar.ui.profile.addresses.add.adapter.LocationAdapter
 import uz.xia.bazar.ui.profile.addresses.add.model.NearbyPlace
@@ -62,7 +68,7 @@ private const val TAG = "AddLocationMapFragment"
 
 class AddLocationMapFragment : Fragment(), UserLocationObjectListener, View.OnClickListener,
     OnSuccessListener<LocationSettingsResponse>, OnFailureListener,
-    LocationAdapter.OnPlaceClickListener {
+    LocationAdapter.OnPlaceClickListener, CameraListener, ValueAnimator.AnimatorUpdateListener {
 
     private var hasEnableLocation = false
     private val viewModel: IAddAddressViewModel by viewModels<AddAddressViewModel>()
@@ -81,15 +87,30 @@ class AddLocationMapFragment : Fragment(), UserLocationObjectListener, View.OnCl
 
     // lateinit var mapView: MapView
     private var userLocationLayer: UserLocationLayer? = null
+
+    /*    private val markIcon by lazyFast {
+            ImageProvider.fromBitmap(requireContext().getBitmapFromVector(R.drawable.home_marker))
+        }*/
     private val markIcon by lazyFast {
-        ImageProvider.fromBitmap(requireContext().getBitmapFromVector(R.drawable.home_marker))
+        ImageProvider.fromBitmap(
+            requireContext().getBitmapFromVector(R.drawable.ic_baseline_circle)
+        )
     }
     private val animation = Animation(Animation.Type.SMOOTH, 2.5f)
+    private val animator = ValueAnimator.ofFloat(0.5f, 1f)
     private var _binding: FragmentAddAddressMapBinding? = null
     private val binding get() = _binding!!
     private val navController by lazyFast {
         Navigation.findNavController(
             requireActivity(), R.id.nav_host_fragment_main
+        )
+    }
+    private var addressName: String = ""
+    private val preference: IPreferenceManager by lazyFast {
+        PreferenceManager(
+            androidx.preference.PreferenceManager.getDefaultSharedPreferences(
+                requireContext()
+            )
         )
     }
     private val permissionLauncher = registerForActivityResult(
@@ -98,7 +119,12 @@ class AddLocationMapFragment : Fragment(), UserLocationObjectListener, View.OnCl
         if (isGranted) {
             onLocation()
         } else {
-            //TODO not fount
+            stopAnimLocation()
+            Toast.makeText(
+                requireContext(),
+                getString(R.string.location_settings_not_allowed),
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 
@@ -107,7 +133,11 @@ class AddLocationMapFragment : Fragment(), UserLocationObjectListener, View.OnCl
             super.onLocationResult(locationResult)
             currentLocation = locationResult.lastLocation
             requestingLocationUpdates = true
+            preference.longitude = currentLocation!!.longitude
+            preference.latitude = currentLocation!!.latitude
             if (hasEnableLocation) {
+                stopAnimLocation()
+                binding.fabLocation.setImageResource(R.drawable.icon_filled_map_location)
                 hasEnableLocation = false
                 moveInitCamera(
                     Point(
@@ -131,14 +161,15 @@ class AddLocationMapFragment : Fragment(), UserLocationObjectListener, View.OnCl
         setUpViews()
         setUpMap()
         setUpObserver()
-        //moveInitCamera()
+        moveInitCamera(Point(41.287235, 69.218949))
     }
 
 
     private fun setUpViews() {
         binding.toolbar.setNavigationOnClickListener(this)
-        binding.location.setOnClickListener(this)
+        binding.fabLocation.setOnClickListener(this)
         binding.buttonConformAddress.setOnClickListener(this)
+        binding.recyclerAdjust.adapter = locationAdapter
         binding.etAddress.addTextChangedListener {
             if (it != null && it.length > 3) {
                 viewModel.searchPlace(it.toString(), "uz")
@@ -146,7 +177,6 @@ class AddLocationMapFragment : Fragment(), UserLocationObjectListener, View.OnCl
                 viewModel.loadNearbyPlaces()
             }
         }
-        binding.recyclerAdjust.adapter = locationAdapter
     }
 
     private fun setUpObserver() {
@@ -174,12 +204,9 @@ class AddLocationMapFragment : Fragment(), UserLocationObjectListener, View.OnCl
             setObjectListener(this@AddLocationMapFragment)
         }
         binding.mapview.map?.apply {
-            logo.setAlignment(
-                Alignment(
-                    HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM
-                )
-            )
+            logo.setAlignment(Alignment(HorizontalAlignment.LEFT, VerticalAlignment.BOTTOM))
         }
+        binding.mapview.map.addCameraListener(this)
     }
 
     private fun moveInitCamera(homePoint: Point) {
@@ -190,14 +217,31 @@ class AddLocationMapFragment : Fragment(), UserLocationObjectListener, View.OnCl
         )
         binding.mapview.map.move(
             CameraPosition(homePoint, 15f, 0f, 0f), animation
-        ) {
-
-        }
+        ) {}
     }
 
-    override fun onObjectAdded(p0: UserLocationView) {
-
-
+    override fun onObjectAdded(userLocationView: UserLocationView) {
+        userLocationView.arrow.setIcon(
+            ImageProvider.fromBitmap(requireContext().getBitmapFromVector(R.drawable.ic_location_gps)),
+            IconStyle().setAnchor(PointF(0.5f, 0.5f))
+                .setRotationType(RotationType.ROTATE)
+                .setZIndex(1f)
+                .setScale(1f)
+        )
+        userLocationLayer?.isAutoZoomEnabled = false
+        val pinIcon = userLocationView.pin.useCompositeIcon()
+        pinIcon.setIcon(
+            "pin",
+            ImageProvider.fromBitmap(requireContext().getBitmapFromVector(R.drawable.ic_location_gps)),
+            IconStyle().setAnchor(PointF(0.5f, 0.5f))
+                .setRotationType(RotationType.ROTATE)
+                .setZIndex(1f)
+                .setScale(1f)
+        )
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            userLocationView.accuracyCircle.fillColor =
+                requireContext().getColor(R.color.colorVioletRipple)
+        }
     }
 
     override fun onObjectRemoved(p0: UserLocationView) {
@@ -208,9 +252,26 @@ class AddLocationMapFragment : Fragment(), UserLocationObjectListener, View.OnCl
 
     }
 
+    private fun startAnimLocation() {
+        _binding?.fabLocation?.setImageResource(R.drawable.animated_location)
+        val drawable = _binding?.fabLocation?.drawable
+        if (drawable is Animatable) {
+            drawable.start()
+        }
+    }
+
+    private fun stopAnimLocation() {
+        _binding?.fabLocation?.setImageResource(R.drawable.animated_location)
+        val drawable = _binding?.fabLocation?.drawable
+        if (drawable is Animatable) {
+            drawable.stop()
+        }
+    }
+
     override fun onClick(item: View?) {
         when (item?.id) {
-            R.id.location -> {
+            R.id.fabLocation -> {
+                startAnimLocation()
                 when {
                     checkLocationPermission() -> {
                         onLocation()
@@ -234,16 +295,15 @@ class AddLocationMapFragment : Fragment(), UserLocationObjectListener, View.OnCl
     @SuppressLint("CutPasteId")
     private fun conformAddressDialog() {
         val layout = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_add_address, null, false)
-        val etAddressName=layout.findViewById<AppCompatEditText>(R.id.etAddressName)
-        val etAddressStreet=layout.findViewById<AppCompatEditText>(R.id.etAddressName)
+        val etAddressName = layout.findViewById<AppCompatEditText>(R.id.etAddressName)
+        etAddressName.setText(preference.addressName)
         val dialog = AlertDialog.Builder(requireContext())
             .setTitle("Manzilni kiritish")
             .setView(layout)
             .setPositiveButton("Ok", DialogInterface.OnClickListener { d, v ->
                 d.dismiss()
-                val addressName=etAddressName.text.toString()
-                val addressStreet=etAddressStreet.text.toString()
-                viewModel.saveAddress(addressName,addressStreet)
+                val addressName = etAddressName.text.toString()
+                viewModel.saveAddress(addressName)
             })
             .setNegativeButton("Yopish", DialogInterface.OnClickListener { d, v ->
                 d.dismiss()
@@ -267,7 +327,8 @@ class AddLocationMapFragment : Fragment(), UserLocationObjectListener, View.OnCl
     }
 
     private fun onLocation() {
-        if (locationRequest == null) createLocationRequest()
+        if (locationRequest == null)
+            createLocationRequest()
         startLocationUpdates()
     }
 
@@ -289,11 +350,13 @@ class AddLocationMapFragment : Fragment(), UserLocationObjectListener, View.OnCl
                     val rae = e as ResolvableApiException
                     rae.startResolutionForResult(requireActivity(), REQUEST_CODE_RESOLUTION)
                 } catch (sie: IntentSender.SendIntentException) {
+                    stopAnimLocation()
                     Timber.i("$TAG PendingIntent unable to execute request.")
                 }
 
             }
             LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE -> {
+                stopAnimLocation()
                 Toast.makeText(
                     requireContext(), R.string.error_enable_gps_setting, Toast.LENGTH_LONG
                 ).show()
@@ -312,7 +375,7 @@ class AddLocationMapFragment : Fragment(), UserLocationObjectListener, View.OnCl
 
                 }
                 Activity.RESULT_CANCELED -> {
-                    //   LocationRequestDialog().show(supportFragmentManager, "dialog")
+                    stopAnimLocation()
                     Timber.i("User chose not to make required location settings changes.")
                 }
             }
@@ -321,7 +384,8 @@ class AddLocationMapFragment : Fragment(), UserLocationObjectListener, View.OnCl
 
     private fun startLocationUpdates() {
         settingsClient.checkLocationSettings(locationSettingsRequest)
-            .addOnSuccessListener(executor, this).addOnFailureListener(executor, this)
+            .addOnSuccessListener(executor, this)
+            .addOnFailureListener(executor, this)
     }
 
     override fun onStart() {
@@ -334,6 +398,36 @@ class AddLocationMapFragment : Fragment(), UserLocationObjectListener, View.OnCl
         binding.mapview.onStop()
         MapKitFactory.getInstance().onStop()
         super.onStop()
+    }
+
+    var isAnimationStart: Boolean = false
+    override fun onCameraPositionChanged(
+        p0: Map,
+        p1: CameraPosition,
+        p2: CameraUpdateReason,
+        p3: Boolean
+    ) {
+        if (p3) {
+            binding.lottie.repeatCount = 0
+            binding.lottie.setMinAndMaxProgress(0.5f, 1f)
+            animator.addUpdateListener(this)
+            animator.start()
+            viewModel.geoCode(p1.target.latitude, p1.target.longitude, "uz")
+            isAnimationStart = true
+        } else {
+            if (isAnimationStart) {
+                binding.lottie.repeatMode = LottieDrawable.REVERSE
+                binding.lottie.repeatCount = LottieDrawable.INFINITE
+                binding.lottie.setMinAndMaxProgress(0f, 0.5f)
+                binding.lottie.cancelAnimation()
+                binding.lottie.playAnimation()
+                isAnimationStart = false
+            }
+        }
+    }
+
+    override fun onAnimationUpdate(p0: ValueAnimator) {
+        binding.lottie.progress = animator.animatedValue as Float
     }
 
 }

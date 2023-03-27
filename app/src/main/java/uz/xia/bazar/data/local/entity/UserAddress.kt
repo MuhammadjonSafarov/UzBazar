@@ -7,7 +7,6 @@ import androidx.room.TypeConverters
 @Entity(tableName = "table_address")
 data class UserAddress(
     val name:String,
-    val street:String,
     val longitude:Double,
     val latitude:Double,
     val time:Long,
