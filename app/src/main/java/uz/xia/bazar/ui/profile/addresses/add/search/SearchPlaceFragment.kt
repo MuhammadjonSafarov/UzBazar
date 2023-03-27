@@ -1,4 +1,4 @@
-package uz.xia.bazar.ui.profile.addresses
+package uz.xia.bazar.ui.profile.addresses.add.search
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
@@ -17,16 +17,15 @@ import uz.xia.bazar.R
 import uz.xia.bazar.data.pref.IPreferenceManager
 import uz.xia.bazar.data.pref.PreferenceManager
 import uz.xia.bazar.databinding.FragmentAddAddressBinding
-import uz.xia.bazar.ui.profile.addresses.add.AddAddressViewModel
-import uz.xia.bazar.ui.profile.addresses.add.IAddAddressViewModel
+import uz.xia.bazar.ui.profile.addresses.add.search.adapter.LocationPlaceAdapter
 import uz.xia.bazar.ui.profile.addresses.add.model.NearbyPlace
 import uz.xia.bazar.utils.lazyFast
 
-class AddressesFragmentMap : Fragment(), View.OnClickListener,
-    LocationAdapterMap.OnPlaceClickListener {
+class SearchPlaceFragment : Fragment(), View.OnClickListener,
+    LocationPlaceAdapter.OnPlaceClickListener {
     private var _binding: FragmentAddAddressBinding? = null
-    private val viewModel: IAddAddressViewModel by viewModels<AddAddressViewModel>()
-    private val locationAdapter by lazyFast { LocationAdapterMap(this) }
+    private val viewModel: ISearchPlaceViewModel by viewModels<SearchPlaceViewModel>()
+    private val locationAdapter by lazyFast { LocationPlaceAdapter(this) }
     private val binding get() = _binding!!
     private val navController by lazyFast {
         Navigation.findNavController(
@@ -61,16 +60,14 @@ class AddressesFragmentMap : Fragment(), View.OnClickListener,
         binding.toolbar.setNavigationOnClickListener {
             navController.popBackStack()
         }
+        binding.recyclerAdjustMap.adapter = locationAdapter
+
         binding.searchMap.addTextChangedListener {
             if (it != null && it.length > 3) {
                 viewModel.searchPlace(it.toString(), "uz")
             } else if (it != null && it.isEmpty()) {
                 viewModel.loadNearbyPlaces()
             }
-        }
-        binding.recyclerAdjustMap.adapter = locationAdapter
-        binding.recyclerAdjustMap.setOnClickListener{
-            conformAddressDialog()
         }
 
     }
@@ -84,18 +81,17 @@ class AddressesFragmentMap : Fragment(), View.OnClickListener,
         }
     }
     @SuppressLint("CutPasteId")
-    private fun conformAddressDialog() {
-        val layout =
-            LayoutInflater.from(requireContext()).inflate(R.layout.dialog_add_address, null, false)
+    private fun conformAddressDialog(place: NearbyPlace) {
+        val layout = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_add_address, null, false)
         val etAddressName = layout.findViewById<AppCompatEditText>(R.id.etAddressName)
-        etAddressName.setText(preference.addressName)
+        etAddressName.setText(place.name)
         val dialog = AlertDialog.Builder(requireContext())
             .setTitle("Manzilni kiritish")
             .setView(layout)
             .setPositiveButton("Ok", DialogInterface.OnClickListener { d, v ->
                 d.dismiss()
                 val addressName = etAddressName.text.toString()
-                viewModel.saveAddress(addressName)
+                viewModel.saveAddress(addressName,place.longitude,place.latitude)
             })
             .setNegativeButton("Yopish", DialogInterface.OnClickListener { d, v ->
                 d.dismiss()
@@ -112,7 +108,7 @@ class AddressesFragmentMap : Fragment(), View.OnClickListener,
         navController.navigate(R.id.nav_add_address_map)
     }
 
-    override fun onNearPlaceSearch(place: NearbyPlace) {
-
+    override fun onClickNearbyPlace(place: NearbyPlace) {
+        conformAddressDialog(place)
     }
 }

@@ -22,9 +22,7 @@ abstract class AppDatabase : RoomDatabase() {
         fun getInstance(context: Context?): AppDatabase {
             if (INSTANCE == null) {
                 INSTANCE = Room.databaseBuilder(
-                    context!!,
-                    AppDatabase::class.java, "uzbazar.db")
-                    .allowMainThreadQueries()
+                    context!!, AppDatabase::class.java, "uzbazar.db")
                     .build()
             }
             return INSTANCE!!

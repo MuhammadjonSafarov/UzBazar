@@ -10,7 +10,7 @@ import uz.xia.bazar.data.local.entity.UserAddress
 @Dao
 interface AddressDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAddress(address: UserAddress)
+    suspend fun insertAddress(address: UserAddress)
     @Query("SELECT * FROM table_address")
     fun getList(): LiveData<List<UserAddress>>
 }

@@ -1,4 +1,4 @@
-package uz.xia.bazar.ui.profile.addresses.add
+package uz.xia.bazar.ui.profile.addresses.add.search
 
 import android.app.Application
 import android.location.Location
@@ -23,18 +23,16 @@ import uz.xia.bazar.ui.profile.addresses.add.model.NearbyPlace
 import uz.xia.bazar.ui.profile.addresses.add.model.PlaceMapper
 import java.util.*
 
-interface IAddAddressViewModel {
+interface ISearchPlaceViewModel {
     val livePlaceList: LiveData<List<NearbyPlace>>
     fun searchPlace(query: String, lang: String)
     fun loadNearbyPlaces()
-
-    fun geoCode(latitude: Double, longitude: Double, lang: String)
-    fun saveAddress(addressName: String)
+    fun saveAddress(addressName: String, longitude: Double, latitude: Double)
 }
 
 private const val TAG = "AddAddressViewModel"
 
-class AddAddressViewModel(app: Application) : AndroidViewModel(app), IAddAddressViewModel {
+class SearchPlaceViewModel(app: Application) : AndroidViewModel(app), ISearchPlaceViewModel {
     override val livePlaceList = MutableLiveData<List<NearbyPlace>>()
     private val nominationService = NominationService.getInstance()
     private val addressDao = AppDatabase.getInstance(app).addressDao()
@@ -94,7 +92,7 @@ class AddAddressViewModel(app: Application) : AndroidViewModel(app), IAddAddress
                         place.title = place.title.replace(Regex(", \\d{6,}"), "")
 
                         Location.distanceBetween(
-                            41.287235, 69.218949,
+                            preference.latitude, preference.longitude,
                             place.latitude!!,
                             place.longitude!!,
                             place.distance
@@ -121,7 +119,7 @@ class AddAddressViewModel(app: Application) : AndroidViewModel(app), IAddAddress
         }
     }
 
-    override fun geoCode(latitude: Double, longitude: Double, lang: String) {
+/*    override fun geoCode(latitude: Double, longitude: Double, lang: String) {
         lastSearchJob?.cancel()
         lastSearchJob = viewModelScope.launch(Dispatchers.IO) {
             try {
@@ -161,17 +159,17 @@ class AddAddressViewModel(app: Application) : AndroidViewModel(app), IAddAddress
                 livePlaceList.postValue(listOf(NearEmpty()))
             }
         }
-    }
+    }*/
 
-    override fun saveAddress(addressName: String) {
+    override fun saveAddress(addressName: String, longitude: Double, latitude: Double) {
         viewModelScope.launch {
             val time = Date().time
             val userAddress = UserAddress(
                 name = addressName,
-                41.287235,
-                69.218949,
+                longitude,
+                latitude,
                 time,
-                AddressType.WORK
+                AddressType.HOME
             )
             addressDao.insertAddress(userAddress)
         }

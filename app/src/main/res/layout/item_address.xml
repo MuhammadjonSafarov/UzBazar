@@ -13,19 +13,23 @@
         android:layout_marginVertical="16dp"
         android:background="@drawable/ripple_selector_item"
         android:layout_gravity="center">
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/icon_filled_home_addresses"
+            />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginStart="16dp"
-            android:drawablePadding="8dp"
+
             android:fontFamily="@font/roboto_regulary"
             android:gravity="center_vertical"
             android:text="@string/home_adresses"
             android:textColor="@color/black"
-            android:textSize="16dp"
-            app:drawableStartCompat="@drawable/icon_filled_home_addresses" />
-
+            android:textSize="16dp"/>
         <View
             android:layout_width="1dp"
             android:layout_height="20dp"

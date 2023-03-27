@@ -1,4 +1,4 @@
-package uz.xia.bazar.ui.profile.addresses
+package uz.xia.bazar.ui.profile.addresses.add.search.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +12,7 @@ import uz.xia.bazar.ui.profile.addresses.add.model.NearEmpty
 import uz.xia.bazar.ui.profile.addresses.add.model.NearLoading
 import uz.xia.bazar.ui.profile.addresses.add.model.NearbyPlace
 
-class LocationAdapterMap(
+class LocationPlaceAdapter(
     private val placeClickListener: OnPlaceClickListener
 ) : ListAdapter<NearbyPlace, RecyclerView.ViewHolder>(NearbyDiffer) {
 
@@ -73,7 +73,7 @@ class LocationAdapterMap(
         }
 
         override fun onClick(view: View) {
-            placeClickListener.onNearPlaceSearch(getItem(adapterPosition))
+            placeClickListener.onClickNearbyPlace(getItem(adapterPosition))
         }
     }
 
@@ -85,7 +85,7 @@ class LocationAdapterMap(
             oldItem == newItem
     }
     interface OnPlaceClickListener {
-        fun onNearPlaceSearch(place: NearbyPlace)
+        fun onClickNearbyPlace(place: NearbyPlace)
     }
 
 }
