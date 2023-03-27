@@ -1,14 +1,11 @@
 package uz.xia.bazar.ui.profile.addresses.add
 
 import android.app.Application
-import android.content.Context
-import android.content.SharedPreferences
 import android.location.Location
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.google.android.gms.common.util.SharedPreferencesUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
