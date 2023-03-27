@@ -96,7 +96,9 @@
             android:inputType="text"
             android:paddingVertical="16dp"
             android:paddingStart="8dp"
-            android:paddingEnd="16dp"></androidx.appcompat.widget.AppCompatEditText>
+            android:paddingEnd="16dp">
+
+        </androidx.appcompat.widget.AppCompatEditText>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerAdjust"
