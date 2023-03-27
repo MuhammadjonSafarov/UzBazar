@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_add_address_map">
+    app:startDestination="@+id/navigation_home">
 
     <fragment
         android:id="@+id/navigation_home"
@@ -28,6 +28,7 @@
         android:name="uz.xia.bazar.ui.profile.addresses.AddressesFragment"
         android:label="@string/my_addresses"
         tools:layout="@layout/fragment_addresses" />
+
     <fragment
         android:id="@+id/nav_add_address"
         android:name="uz.xia.bazar.ui.profile.addresses.AddressesFragmentMap"
