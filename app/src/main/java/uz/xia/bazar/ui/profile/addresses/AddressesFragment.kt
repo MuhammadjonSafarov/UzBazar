@@ -49,6 +49,6 @@ class AddressesFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(p0: View?) {
-        navController.navigate(R.id.nav_add_address_map)
+        navController.navigate(R.id.nav_add_address)
     }
 }

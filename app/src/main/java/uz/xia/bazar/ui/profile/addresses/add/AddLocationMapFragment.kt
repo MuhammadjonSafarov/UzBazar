@@ -5,7 +5,6 @@ import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
-import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.IntentSender
@@ -294,7 +293,8 @@ class AddLocationMapFragment : Fragment(), UserLocationObjectListener, View.OnCl
 
     @SuppressLint("CutPasteId")
     private fun conformAddressDialog() {
-        val layout = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_add_address, null, false)
+        val layout =
+            LayoutInflater.from(requireContext()).inflate(R.layout.dialog_add_address, null, false)
         val etAddressName = layout.findViewById<AppCompatEditText>(R.id.etAddressName)
         etAddressName.setText(preference.addressName)
         val dialog = AlertDialog.Builder(requireContext())
